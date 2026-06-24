@@ -1,6 +1,6 @@
 // ================= SUPABASE INITIALIZATION =================
 const supabaseUrl = 'https://olwqkfltyxojrwmoxfqf.supabase.co';
-const supabaseAnonKey = '';
+const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9sd3FrZmx0eXhvanJ3bW94ZnFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAyMzkwNTEsImV4cCI6MjA5NTgxNTA1MX0.duoJUgcT3pLppCF3hyD2UyzqONiPL0zUsIFUKotidpw';
 
 const supabase = window.supabase.createClient(supabaseUrl, supabaseAnonKey);
 
