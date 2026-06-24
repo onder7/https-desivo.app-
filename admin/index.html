@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desivo — Yönetici Paneli</title>
+  
+  <!-- Tailwind is avoided as per instructions. Using custom stylesheet instead. -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Google Fonts Outfit & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Supabase JS Client UMD -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.43.4/dist/umd/supabase.js" crossorigin="anonymous"></script>
+  
+  <!-- Chart.js UMD -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.js" crossorigin="anonymous"></script>
+  
+  <!-- Lucide Icons UMD -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.395.0/dist/umd/lucide.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <!-- Global Error Catcher for Browser Debugging -->
+  <script>
+    window.onerror = function(message, source, lineno, colno, error) {
+      const errDiv = document.createElement('div');
+      errDiv.id = 'global-js-error';
+      errDiv.style.position = 'fixed';
+      errDiv.style.top = '10px';
+      errDiv.style.left = '10px';
+      errDiv.style.right = '10px';
+      errDiv.style.background = '#EF4444';
+      errDiv.style.color = '#FFF';
+      errDiv.style.padding = '15px';
+      errDiv.style.borderRadius = '8px';
+      errDiv.style.zIndex = '999999';
+      errDiv.style.fontFamily = 'monospace';
+      errDiv.style.fontSize = '12px';
+      errDiv.style.boxShadow = '0 5px 20px rgba(0,0,0,0.5)';
+      errDiv.innerHTML = '<strong>Yazılımsal Tarayıcı Hatası:</strong> ' + message + '<br><small>Dosya: ' + source + ' | Satır: ' + lineno + '</small>';
+      document.body.appendChild(errDiv);
+      return false;
+    };
+  </script>
+
+  <!-- ================= AUTH CONTAINER ================= -->
+  <div id="auth-page" class="auth-container">
+    <div class="auth-card">
+      <div class="logo-container">
+        Desivo<span>.</span>Admin
+      </div>
+      <h2 class="auth-title">Yönetici Girişi</h2>
+      <p class="auth-subtitle">Desivo platformunu yönetmek için kimliğinizi doğrulayın.</p>
+      
+      <div id="auth-error" class="alert alert-danger" style="display: none;"></div>
+      <div id="auth-success" class="alert alert-success" style="display: none;"></div>
+      
+      <form id="login-form">
+        <div class="form-group">
+          <label class="form-label" for="login-email">Yönetici E-posta</label>
+          <input type="email" id="login-email" class="form-control" placeholder="admin@desivo.app" required autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="login-password">Şifre</label>
+          <input type="password" id="login-password" class="form-control" placeholder="••••••••" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn btn-primary" id="btn-login">
+          <i data-lucide="log-in"></i> Güvenli Giriş Yap
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MAIN APP LAYOUT ================= -->
+  <div id="app-page" class="app-layout" style="display: none;">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-container" style="font-size: 22px; margin-bottom: 0;">
+          Desivo<span>.</span>Admin
+        </div>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <div class="nav-item active" data-tab="tab-overview">
+          <i data-lucide="layout-dashboard"></i> Genel Bakış
+        </div>
+        <div class="nav-item" data-tab="tab-revenue">
+          <i data-lucide="circle-dollar-sign"></i> Gelir & Abonelik
+        </div>
+        <div class="nav-item" data-tab="tab-users">
+          <i data-lucide="users"></i> Kullanıcı Yönetimi
+        </div>
+        <div class="nav-item" data-tab="tab-audit">
+          <i data-lucide="folder-kanban"></i> İçerik Denetimi
+        </div>
+        <div class="nav-item" data-tab="tab-bugs">
+          <i data-lucide="bug"></i> Hata Raporları
+          <span id="sidebar-bug-badge" class="badge-pill badge-error" style="margin-left: auto; display: none; font-size: 10px; padding: 2px 6px;">0</span>
+        </div>
+        <div class="nav-item" data-tab="tab-notifications">
+          <i data-lucide="bell-ring"></i> Bildirim Gönderimi
+        </div>
+        <div class="nav-item" data-tab="tab-email">
+          <i data-lucide="mail"></i> E-Posta Bülteni
+        </div>
+        <div class="nav-item" data-tab="tab-config">
+          <i data-lucide="settings-2"></i> Uygulama Ayarları
+        </div>
+        <div class="nav-item" data-tab="tab-api-test">
+          <i data-lucide="key-round"></i> API Test & Durum
+        </div>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <div class="admin-badge">
+          <div class="admin-avatar" id="admin-initials">AD</div>
+          <div class="admin-info">
+            <div class="admin-name" id="admin-email-display">admin@desivo.app</div>
+            <div class="admin-role">Sistem Yöneticisi</div>
+          </div>
+        </div>
+        <button class="btn btn-secondary btn-sm" id="btn-logout" style="width: 100%;">
+          <i data-lucide="log-out" style="width: 14px; height: 14px;"></i> Oturumu Kapat
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      
+      <!-- ================= SECTION: OVERVIEW ================= -->
+      <section id="tab-overview" class="tab-pane active">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Genel Bakış</h1>
+            <p class="page-subtitle">Desivo platformunun genel performans ve kullanım metrikleri.</p>
+          </div>
+          <button class="btn btn-secondary btn-sm" id="btn-refresh-stats" style="width: auto;">
+            <i data-lucide="rotate-cw" style="width: 14px; height: 14px;"></i> Verileri Yenile
+          </button>
+        </div>
+        
+        <!-- Stats cards -->
+        <div class="stats-grid">
+          <div class="stats-card card-primary">
+            <div>
+              <div class="stats-label">Toplam Kullanıcı</div>
+              <div class="stats-number" id="stat-total-users">0</div>
+            </div>
+            <div class="stats-icon">
+              <i data-lucide="users"></i>
+            </div>
+          </div>
+          
+          <div class="stats-card card-secondary">
+            <div>
+              <div class="stats-label">Premium Üye (Pro/Ajans)</div>
+              <div class="stats-number" id="stat-premium-users">0</div>
+            </div>
+            <div class="stats-icon">
+              <i data-lucide="zap"></i>
+            </div>
+          </div>
+          
+          <div class="stats-card card-magenta">
+            <div>
+              <div class="stats-label">Üretilen Toplam İçerik</div>
+              <div class="stats-number" id="stat-total-contents">0</div>
+            </div>
+            <div class="stats-icon">
+              <i data-lucide="video"></i>
+            </div>
+          </div>
+          
+          <div class="stats-card card-success">
+            <div>
+              <div class="stats-label">Bekleyen Hata Raporu</div>
+              <div class="stats-number" id="stat-active-bugs">0</div>
+            </div>
+            <div class="stats-icon">
+              <i data-lucide="shield-alert"></i>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Charts layout -->
+        <div class="analytics-grid">
+          <div class="dashboard-panel">
+            <div class="panel-header">
+              <h3 class="panel-title">Abonelik Dağılımı ve Gelir Grupları</h3>
+            </div>
+            <div style="height: 300px; position: relative; display: flex; justify-content: center; align-items: center;">
+              <canvas id="chart-subscriptions"></canvas>
+            </div>
+          </div>
+          
+          <div class="dashboard-panel">
+            <div class="panel-header">
+              <h3 class="panel-title">Platform Tercihleri</h3>
+            </div>
+            <div style="height: 300px; position: relative; display: flex; justify-content: center; align-items: center;">
+              <canvas id="chart-platforms"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- System Status Summary -->
+        <div class="dashboard-panel" style="margin-top: 30px;">
+          <div class="panel-header">
+            <h3 class="panel-title">Sistem Durumu ve Entegrasyonlar</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Modül / Servis</th>
+                  <th>API Sağlayıcı</th>
+                  <th>Durum</th>
+                  <th>Notlar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Supabase Cloud DB</td>
+                  <td>Supabase JS SDK</td>
+                  <td><td><span class="badge-pill badge-active">Çevrimiçi (Online)</span></td></td>
+                  <td>Ana veritabanı bağlantısı kuruldu ve veriler senkronize.</td>
+                </tr>
+                <tr>
+                  <td>Yapay Zeka API Protokolü</td>
+                  <td>OpenAI Proxy (Edge)</td>
+                  <td><td><span class="badge-pill badge-active">Aktif</span></td></td>
+                  <td>JWT doğrulamalı sunucusuz vekil servis devrede.</td>
+                </tr>
+                <tr>
+                  <td>Ödüllü Reklam Sistemi</td>
+                  <td>Google AdMob</td>
+                  <td><td><span class="badge-pill badge-creator">Test & Prod</span></td></td>
+                  <td>Haftalık 3 limitli izleme motoru entegre.</td>
+                </tr>
+                <tr>
+                  <td>Uygulama İçi Satın Alma</td>
+                  <td>RevenueCat / StoreKit</td>
+                  <td><td><span class="badge-pill badge-active">Hazır</span></td></td>
+                  <td>App Store Sandbox & Production ortamları izleniyor.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      
+      <!-- ================= SECTION: REVENUE ================= -->
+      <section id="tab-revenue" class="tab-pane">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Gelir & Abonelik Analitiği</h1>
+            <p class="page-subtitle">Aktif abonelikler, aylık tekrarlayan gelir (MRR) ve satın alım kaynaklarının detaylı finansal takibi.</p>
+          </div>
+          <div style="display: flex; gap: 15px; align-items: center;">
+            <label style="font-size: 13px; color: var(--text-secondary); display: flex; align-items: center; gap: 8px; cursor: pointer; user-select: none;">
+              <input type="checkbox" id="revenue-exclude-sandbox" checked style="accent-color: var(--primary);"> Sandbox İşlemleri Gizle
+            </label>
+            <button class="btn btn-secondary btn-sm" id="btn-refresh-revenue" style="width: auto;">
+              <i data-lucide="rotate-cw" style="width: 14px; height: 14px;"></i> Tabloyu Yenile
+            </button>
+          </div>
+        </div>
+
+        <!-- Financial Stats Cards -->
+        <div class="stats-grid">
+          <div class="stats-card card-primary">
+            <div>
+              <div class="stats-label">Aylık Tekrarlayan Gelir (MRR)</div>
+              <div class="stats-number" id="rev-stat-mrr">0 TL</div>
+            </div>
+            <div class="stats-icon">
+              <i data-lucide="line-chart"></i>
+            </div>
+          </div>
+          
+          <div class="stats-card card-secondary">
+            <div>
+              <div class="stats-label">Aktif Ücretli Abonelik</div>
+              <div class="stats-number" id="rev-stat-active-subs">0</div>
+            </div>
+            <div class="stats-icon">
+              <i data-lucide="credit-card"></i>
+            </div>
+          </div>
+          
+          <div class="stats-card card-magenta">
+            <div>
+              <div class="stats-label">Ortalama Kullanıcı Değeri (ARPU)</div>
+              <div class="stats-number" id="rev-stat-arpu">0 TL</div>
+            </div>
+            <div class="stats-icon">
+              <i data-lucide="trending-up"></i>
+            </div>
+          </div>
+          
+          <div class="stats-card card-success">
+            <div>
+              <div class="stats-label">Tahmini Yıllık Ciro (ARR)</div>
+              <div class="stats-number" id="rev-stat-arr">0 TL</div>
+            </div>
+            <div class="stats-icon">
+              <i data-lucide="wallet"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Revenue Charts Grid -->
+        <div class="analytics-grid">
+          <div class="dashboard-panel">
+            <div class="panel-header">
+              <h3 class="panel-title">Abonelik Gelir Dağılımı (TL)</h3>
+            </div>
+            <div style="height: 260px; position: relative; display: flex; justify-content: center; align-items: center;">
+              <canvas id="chart-revenue-distribution"></canvas>
+            </div>
+          </div>
+          
+          <div class="dashboard-panel">
+            <div class="panel-header">
+              <h3 class="panel-title">Ödeme Yöntemi Oranları</h3>
+            </div>
+            <div style="height: 260px; position: relative; display: flex; justify-content: center; align-items: center;">
+              <canvas id="chart-revenue-sources"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Subscribers list -->
+        <div class="dashboard-panel" style="margin-top: 30px;">
+          <div class="panel-header">
+            <h3 class="panel-title">Aktif Ücretli Aboneler Listesi</h3>
+          </div>
+          
+          <div class="table-responsive">
+            <div id="revenue-loading" class="loading-overlay" style="display: none; padding: 20px;">
+              <div class="spinner"></div>
+              <div class="loading-text">Finansal veriler derleniyor...</div>
+            </div>
+            
+            <table class="custom-table" id="revenue-table">
+              <thead>
+                <tr>
+                  <th>Kullanıcı / E-posta</th>
+                  <th>Abonelik Planı</th>
+                  <th>Aylık Fiyat</th>
+                  <th>Ödeme Yöntemi</th>
+                  <th>Ortam (Env)</th>
+                  <th>Son Yenilenme Tarihi</th>
+                  <th>Durum</th>
+                </tr>
+              </thead>
+              <tbody id="revenue-table-body">
+                <!-- Subscriber rows loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      
+      <!-- ================= SECTION: USERS ================= -->
+      <section id="tab-users" class="tab-pane">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Kullanıcı Yönetimi</h1>
+            <p class="page-subtitle">Kayıtlı kreatör profillerini inceleyin, limitleri düzenleyin ve üyelik planlarını yönetin.</p>
+          </div>
+        </div>
+        
+        <div class="dashboard-panel">
+          <!-- Search & Filters -->
+          <div class="search-bar-container">
+            <div class="search-input-wrapper">
+              <i data-lucide="search"></i>
+              <input type="text" id="user-search-input" class="form-control" placeholder="İsim veya e-posta adresi ile ara...">
+            </div>
+            <select id="user-filter-plan" class="form-control" style="max-width: 200px;">
+              <option value="all">Tüm Üyelik Tipleri</option>
+              <option value="free">Free (Ücretsiz)</option>
+              <option value="creator">Creator (Pro)</option>
+              <option value="agency">Agency (Ajans)</option>
+            </select>
+          </div>
+          
+          <!-- Users table -->
+          <div class="table-responsive">
+            <div id="users-loading" class="loading-overlay">
+              <div class="spinner"></div>
+              <div class="loading-text">Kullanıcılar yükleniyor...</div>
+            </div>
+            
+            <table class="custom-table" id="users-table" style="display: none;">
+              <thead>
+                <tr>
+                  <th>Kullanıcı Adı / E-posta</th>
+                  <th>Üyelik Planı</th>
+                  <th>Kredi Limiti</th>
+                  <th>Kayıt Tarihi</th>
+                  <th>Davet Kodu</th>
+                  <th>Cihaz Token</th>
+                  <th>İşlemler</th>
+                </tr>
+              </thead>
+              <tbody id="users-table-body">
+                <!-- User rows injected dynamically by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SECTION: CONTENT AUDIT ================= -->
+      <section id="tab-audit" class="tab-pane">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">İçerik Denetimi</h1>
+            <p class="page-subtitle">Kullanıcılar tarafından üretilen yapay zeka projelerini ve senaryoları inceleyin.</p>
+          </div>
+        </div>
+        
+        <div class="dashboard-panel">
+          <!-- Search & Filters -->
+          <div class="search-bar-container">
+            <div class="search-input-wrapper">
+              <i data-lucide="search"></i>
+              <input type="text" id="audit-search-input" class="form-control" placeholder="Proje başlığı veya kullanıcı e-postası ile ara...">
+            </div>
+            <select id="audit-filter-platform" class="form-control" style="max-width: 200px;">
+              <option value="all">Tüm Mecralar</option>
+              <option value="reels">Instagram Reels</option>
+              <option value="tiktok">TikTok</option>
+              <option value="youtube">YouTube Shorts</option>
+              <option value="linkedin">LinkedIn</option>
+            </select>
+          </div>
+          
+          <!-- Projects table -->
+          <div class="table-responsive">
+            <div id="audit-loading" class="loading-overlay">
+              <div class="spinner"></div>
+              <div class="loading-text">Projeler yükleniyor...</div>
+            </div>
+            
+            <table class="custom-table" id="audit-table" style="display: none;">
+              <thead>
+                <tr>
+                  <th>Kullanıcı / E-posta</th>
+                  <th>Proje Başlığı</th>
+                  <th>Mecra</th>
+                  <th>Viral Skor</th>
+                  <th>Tarih</th>
+                  <th>İşlemler</th>
+                </tr>
+              </thead>
+              <tbody id="audit-table-body">
+                <!-- Project rows injected dynamically by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      
+      <!-- ================= SECTION: BUGS ================= -->
+      <section id="tab-bugs" class="tab-pane">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Hata Raporları</h1>
+            <p class="page-subtitle">Mobil uygulamadan gelen JS çökmelerini ve cihaz detaylarını izleyin.</p>
+          </div>
+          <button class="btn btn-secondary btn-sm" id="btn-clear-bugs" style="width: auto; background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.2); color: #FCA5A5;">
+            <i data-lucide="trash-2" style="width: 14px; height: 14px;"></i> Tüm Raporları Temizle
+          </button>
+        </div>
+        
+        <div class="dashboard-panel">
+          <div class="table-responsive">
+            <div id="bugs-loading" class="loading-overlay">
+              <div class="spinner"></div>
+              <div class="loading-text">Hata raporları listeleniyor...</div>
+            </div>
+            
+            <table class="custom-table" id="bugs-table" style="display: none;">
+              <thead>
+                <tr>
+                  <th></th> <!-- Expand indicator -->
+                  <th>Hata Zamanı</th>
+                  <th>Kullanıcı</th>
+                  <th>Hata Mesajı</th>
+                  <th>Cihaz & İşletim Sistemi</th>
+                  <th>Aksiyonlar</th>
+                </tr>
+              </thead>
+              <tbody id="bugs-table-body">
+                <!-- Bug rows injected dynamically by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      
+      <!-- ================= SECTION: NOTIFICATIONS ================= -->
+      <section id="tab-notifications" class="tab-pane">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Bildirim Gönderimi</h1>
+            <p class="page-subtitle">Expo Push API üzerinden kayıtlı mobil cihazlara anlık bildirim yayınlayın.</p>
+          </div>
+        </div>
+        
+        <div class="analytics-grid">
+          <!-- Notification Dispatch Form -->
+          <div class="dashboard-panel">
+            <div class="panel-header">
+              <h3 class="panel-title">Yeni Bildirim Oluştur</h3>
+            </div>
+            
+            <div id="notify-alert-success" class="alert alert-success" style="display: none;"></div>
+            <div id="notify-alert-danger" class="alert alert-danger" style="display: none;"></div>
+            
+            <form id="notify-form">
+              <div class="form-group">
+                <label class="form-label" for="notify-title">Bildirim Başlığı</label>
+                <input type="text" id="notify-title" class="form-control" placeholder="Örn: 🔥 Trend Alarmı!" required>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="notify-body">Bildirim İçeriği</label>
+                <textarea id="notify-body" class="form-control" rows="4" placeholder="Kreatörlerimizi harekete geçirecek samimi bir mesaj yazın..." required></textarea>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="notify-target">Gönderim Hedefi</label>
+                <select id="notify-target" class="form-control">
+                  <option value="all">Tüm Cihazlar (Broadcast - Expo Tokens)</option>
+                  <option value="specific">Belirli Bir E-posta Adresine Gönder</option>
+                </select>
+              </div>
+              
+              <div class="form-group" id="notify-specific-user-group" style="display: none;">
+                <label class="form-label" for="notify-email">Hedef Kullanıcı E-postası</label>
+                <input type="email" id="notify-email" class="form-control" placeholder="kreator@ornek.com">
+              </div>
+              
+              <button type="submit" class="btn btn-primary" id="btn-send-notify">
+                <i data-lucide="send"></i> Bildirimi Gönder (Push)
+              </button>
+            </form>
+          </div>
+          
+          <!-- Expo Notification Guide -->
+          <div class="dashboard-panel">
+            <div class="panel-header">
+              <h3 class="panel-title">Push Bildirim Rehberi</h3>
+            </div>
+            <div style="font-size: 13px; line-height: 1.6; color: var(--text-secondary);">
+              <p style="margin-bottom: 15px;">Bu arayüz, Expo'nun global anlık bildirim altyapısını kullanmaktadır. Sistemin çalışması için:</p>
+              
+              <ol style="margin-left: 20px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px;">
+                <li>Mobil kullanıcı uygulamanıza giriş yaptığında, cihazında oluşturulan <strong>Expo Push Token</strong> değeri otomatik olarak Supabase'e kaydedilmelidir.</li>
+                <li>Admin paneli, kayıtlı tokenları doğrudan tarayıcı üzerinden <strong>Expo Push Gateway API</strong>'sine gönderir.</li>
+                <li>Expo, Apple APNs ve Google FCM servisleri üzerinden bildirimi saniyeler içinde fiziksel cihazlara iletir.</li>
+              </ol>
+              
+              <div class="alert alert-success" style="background: rgba(108, 99, 255, 0.08); border-color: rgba(108, 99, 255, 0.15); color: var(--text); padding: 15px;">
+                <h4 style="font-family: 'Outfit', sans-serif; font-size: 14px; margin-bottom: 5px; color: var(--secondary);">SQL Migrasyon Bilgisi</h4>
+                Kullanıcıların tokenlarını kaydetmek için Supabase'de <strong>public.profiles</strong> tablosuna <code>expo_push_token TEXT</code> kolonunu eklemeniz gerekir.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- ================= SECTION: EMAIL NEWSLETTER ================= -->
+      <section id="tab-email" class="tab-pane">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">E-Posta Bülteni</h1>
+            <p class="page-subtitle">Kayıtlı kullanıcılara bültenler, duyurular veya özel mesajlar gönderin.</p>
+          </div>
+        </div>
+        
+        <div class="email-builder-grid">
+          <!-- Email Dispatch Form -->
+          <div class="dashboard-panel">
+            <div class="panel-header" style="flex-direction: column; align-items: flex-start; gap: 15px;">
+              <h3 class="panel-title">Yeni E-Posta Oluştur</h3>
+              
+              <!-- Editor Mode Selector -->
+              <div class="editor-mode-selector" style="display: flex; gap: 10px; width: 100%; margin-top: 5px;">
+                <button type="button" class="btn btn-secondary active" id="btn-editor-easy" style="flex: 1; padding: 8px 12px; font-size: 13px; gap: 6px;">
+                  <i data-lucide="layout" style="width: 16px; height: 16px;"></i> Kolay Editör
+                </button>
+                <button type="button" class="btn btn-secondary" id="btn-editor-code" style="flex: 1; padding: 8px 12px; font-size: 13px; gap: 6px;">
+                  <i data-lucide="code" style="width: 16px; height: 16px;"></i> HTML Kodu
+                </button>
+              </div>
+            </div>
+            
+            <div id="email-alert-success" class="alert alert-success" style="display: none;"></div>
+            <div id="email-alert-danger" class="alert alert-danger" style="display: none;"></div>
+            
+            <form id="email-form">
+              <!-- Global Subject -->
+              <div class="form-group">
+                <label class="form-label" for="email-subject">E-Posta Konusu (Subject)</label>
+                <input type="text" id="email-subject" class="form-control" placeholder="Örn: 🚀 Desivo'da Büyük Güncelleme Yayında!" required>
+              </div>
+              
+              <!-- Easy Editor Fields -->
+              <div id="email-easy-fields">
+                <div class="form-group">
+                  <label class="form-label" for="email-easy-title">E-Posta Başlığı (Header H1)</label>
+                  <input type="text" id="email-easy-title" class="form-control" placeholder="Örn: Yeni Trendler ve Güncellemeler Yayında! 🎬" value="Yeni Trendler ve Güncellemeler Yayında! 🎬">
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label" for="email-easy-body">E-Posta İçerik Metni</label>
+                  <textarea id="email-easy-body" class="form-control" rows="8" placeholder="Kullanıcılarınıza iletmek istediğiniz mesajı buraya yazın. Paragraflar için satır başı yapabilirsiniz.">Merhaba değerli üreticimiz! Sosyal medyada viral olacak yapay zeka destekli videolar üretmeniz için Desivo paneline yeni araçlar ekledik. Yeni özellikleri incelemek ve içerik serinizi büyütmek için stüdyoya göz atın.</textarea>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                  <div class="form-group">
+                    <label class="form-label" for="email-easy-btn-text">Buton Metni (Opsiyonel)</label>
+                    <input type="text" id="email-easy-btn-text" class="form-control" placeholder="Örn: Stüdyoyu Aç" value="Stüdyoyu Aç">
+                  </div>
+                  
+                  <div class="form-group">
+                    <label class="form-label" for="email-easy-btn-url">Buton Bağlantısı (URL)</label>
+                    <input type="url" id="email-easy-btn-url" class="form-control" placeholder="Örn: https://desivo.app" value="https://desivo.app">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="email-easy-footer">Alt Bilgi (Footer)</label>
+                  <input type="text" id="email-easy-footer" class="form-control" placeholder="Örn: © 2026 Desivo. Tüm hakları saklıdır." value="© 2026 Desivo. Tüm hakları saklıdır.">
+                </div>
+              </div>
+              
+              <!-- Code Editor Fields (HTML textarea) -->
+              <div id="email-code-fields" style="display: none;">
+                <div class="form-group">
+                  <label class="form-label" for="email-body">E-Posta HTML Kodu</label>
+                  <textarea id="email-body" class="form-control" rows="15" placeholder="HTML kodunuz buraya yazılacaktır..." required><!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Desivo Bülten</title>
+  <style>
+    body { font-family: 'Inter', -apple-system, sans-serif; background-color: #0b0c10; color: #e4e6eb; margin: 0; padding: 0; }
+    .wrapper { width: 100%; table-layout: fixed; background-color: #0b0c10; padding: 40px 0; }
+    .container { max-width: 600px; margin: 0 auto; background-color: #12131a; border: 1px solid #222533; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+    .header { padding: 30px; text-align: center; background: linear-gradient(135deg, #181922 0%, #12131a 100%); border-bottom: 1px solid #222533; }
+    .content { padding: 40px 30px; text-align: center; }
+    h1 { font-size: 22px; font-weight: 700; color: #ffffff; margin: 0 0 16px 0; text-align: center; }
+    p { font-size: 15px; line-height: 1.6; color: #a0a5c0; margin: 0 0 20px 0; text-align: center; }
+    .btn-container { margin-bottom: 35px; text-align: center; }
+    .btn { display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, #ff2e93 0%, #6c63ff 100%); color: #ffffff !important; text-decoration: none; font-weight: 600; font-size: 15px; border-radius: 8px; box-shadow: 0 4px 15px rgba(255, 46, 147, 0.3); }
+    .footer { padding: 30px; background-color: #0b0c10; text-align: center; border-top: 1px solid #222533; font-size: 12px; color: #646880; }
+    .footer p { font-size: 12px; color: #646880; margin: 0; }
+  </style>
+</head>
+<body>
+  <div class="wrapper" style="width: 100%; table-layout: fixed; background-color: #0b0c10; padding: 40px 0;">
+    <div class="container" style="max-width: 600px; margin: 0 auto; background-color: #12131a; border: 1px solid #222533; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);">
+      <div class="header" style="padding: 30px; text-align: center; background: linear-gradient(135deg, #181922 0%, #12131a 100%); border-bottom: 1px solid #222533;">
+        <div style="display: inline-block; vertical-align: middle;">
+          <img src="https://desivo.app/assets/logo.png" alt="Desivo Logo" width="36" height="36" style="border: 0; vertical-align: middle; margin-right: 8px;">
+          <span style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 24px; font-weight: 800; color: #ffffff; vertical-align: middle; letter-spacing: -0.5px;">Desivo<span style="color: #ff2e93; margin-left: 1px;">.</span></span>
+        </div>
+      </div>
+      <div class="content" style="padding: 40px 30px; text-align: center;">
+        <h1 style="font-size: 22px; font-weight: 700; color: #ffffff; margin: 0 0 16px 0; text-align: center;">Yeni Trendler ve Güncellemeler Yayında! 🎬</h1>
+        <p style="font-size: 15px; line-height: 1.6; color: #a0a5c0; margin: 0 0 20px 0; text-align: center;">Merhaba değerli üreticimiz! Sosyal medyada viral olacak yapay zeka destekli videolar üretmeniz için Desivo paneline yeni araçlar ekledik. Yeni özellikleri incelemek ve içerik serinizi büyütmek için stüdyoya göz atın.</p>
+        <div class="btn-container" style="margin-bottom: 35px; text-align: center;">
+          <a href="https://desivo.app" class="btn" target="_blank" style="display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, #ff2e93 0%, #6c63ff 100%); color: #ffffff !important; text-decoration: none; font-weight: 600; font-size: 15px; border-radius: 8px; box-shadow: 0 4px 15px rgba(255, 46, 147, 0.3);">Stüdyoyu Aç</a>
+        </div>
+      </div>
+      <div class="footer" style="padding: 30px; background-color: #0b0c10; text-align: center; border-top: 1px solid #222533; font-size: 12px; color: #646880;">
+        <p style="margin: 0; font-size: 12px; color: #646880;">© 2026 Desivo. Tüm hakları saklıdır.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html></textarea>
+                </div>
+              </div>
+              
+              <!-- Global Recipient Configuration -->
+              <div class="form-group" style="margin-top: 20px;">
+                <label class="form-label" for="email-target">Gönderim Hedefi</label>
+                <select id="email-target" class="form-control">
+                  <option value="all">Tüm Kayıtlı Kullanıcılar (Toplu Bülten)</option>
+                  <option value="specific">Belirli Bir E-posta Adresine Gönder</option>
+                </select>
+              </div>
+              
+              <div class="form-group" id="email-specific-user-group" style="display: none;">
+                <label class="form-label" for="email-recipient">Hedef Alıcı E-postası</label>
+                <input type="email" id="email-recipient" class="form-control" placeholder="kreator@ornek.com">
+              </div>
+              
+              <button type="submit" class="btn btn-primary" id="btn-send-email" style="margin-top: 10px;">
+                <i data-lucide="send"></i> E-Postayı Gönder (Mail)
+              </button>
+            </form>
+          </div>
+          
+          <!-- Live Preview & Guidelines Column -->
+          <div style="display: flex; flex-direction: column; gap: 25px;">
+            <!-- Live Preview Panel -->
+            <div class="dashboard-panel" style="padding: 20px; display: flex; flex-direction: column; min-height: 480px;">
+              <div class="panel-header" style="margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
+                <h3 class="panel-title" style="display: flex; align-items: center; gap: 8px;">
+                  <i data-lucide="eye" style="color: var(--secondary); width: 18px; height: 18px;"></i> Canlı Önizleme
+                </h3>
+                
+                <!-- Desktop / Mobile Toggles -->
+                <div style="display: flex; gap: 5px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 2px;">
+                  <button type="button" class="btn btn-sm btn-secondary active" id="btn-preview-desktop" style="width: auto; padding: 4px 8px; font-size: 11px; border: none; background: transparent;">
+                    <i data-lucide="monitor" style="width: 14px; height: 14px;"></i> Masaüstü
+                  </button>
+                  <button type="button" class="btn btn-sm btn-secondary" id="btn-preview-mobile" style="width: auto; padding: 4px 8px; font-size: 11px; border: none; background: transparent;">
+                    <i data-lucide="iphone" style="width: 14px; height: 14px;"></i> Mobil
+                  </button>
+                </div>
+              </div>
+              
+              <!-- Iframe Container -->
+              <div id="email-preview-container" style="flex: 1; border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; background: #0b0c10; transition: var(--transition); display: flex; align-items: center; justify-content: center; width: 100%;">
+                <iframe id="email-preview-iframe" style="width: 100%; height: 500px; border: none; background: #0b0c10; display: block; transition: var(--transition);"></iframe>
+              </div>
+            </div>
+            
+            <!-- Email Guidelines -->
+            <div class="dashboard-panel" style="padding: 25px;">
+              <div class="panel-header" style="margin-bottom: 15px;">
+                <h3 class="panel-title">E-Posta Gönderim Rehberi</h3>
+              </div>
+              <div style="font-size: 13px; line-height: 1.6; color: var(--text-secondary);">
+                <p style="margin-bottom: 12px;">Bu arayüz, e-postalarınızı doğrudan serverless Deno Edge Function üzerinden <strong>Resend API</strong> kullanarak gönderir.</p>
+                
+                <ol style="margin-left: 20px; margin-bottom: 15px; display: flex; flex-direction: column; gap: 8px;">
+                  <li>E-postaların gönderici adresi <strong>info@desivo.app</strong> olarak imzalanır.</li>
+                  <li>İçerik kısmında standart HTML etiketleri kullanarak bağlantılar (linkler), başlıklar veya kalın metinler oluşturabilirsiniz.</li>
+                  <li><strong>Resend Ücretsiz Paket Limiti:</strong> Aylık 3.000 mail gönderimi dahildir (Günlük limit yoktur).</li>
+                </ol>
+                
+                <div class="alert alert-warning" style="background: rgba(255, 46, 147, 0.06); border-color: rgba(255, 46, 147, 0.15); color: var(--text); padding: 12px; margin-top: 15px; font-size: 12px; line-height: 1.5;">
+                  <h4 style="font-family: 'Outfit', sans-serif; font-size: 13px; margin-bottom: 4px; color: var(--magenta);">DNS Doğrulama Hatırlatması</h4>
+                  Gönderilen maillerin doğrudan gelen kutusuna (inbox) düşmesi için <strong>resend.com</strong> üzerindeki DNS doğrulama adımlarını Hostinger panelinizde tamamlamış olmalısınız.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- ================= SECTION: API TEST ================= -->
+      <section id="tab-api-test" class="tab-pane">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">API Test & Durum</h1>
+            <p class="page-subtitle">OpenAI API bağlantısını kontrol edin, gecikme süresini ölçün ve günlük kullanım durumunu izleyin.</p>
+          </div>
+        </div>
+
+        <div class="analytics-grid">
+          <!-- API Test Card -->
+          <div class="dashboard-panel">
+            <div class="panel-header">
+              <h3 class="panel-title">Bağlantı ve Model Testi</h3>
+            </div>
+            
+            <div id="api-alert-success" class="alert alert-success" style="display: none;"></div>
+            <div id="api-alert-danger" class="alert alert-danger" style="display: none;"></div>
+            
+            <form id="api-test-form">
+              <div class="form-group">
+                <label class="form-label" for="api-key-input">OpenAI API Key (sk-...)</label>
+                <div style="display: flex; gap: 10px;">
+                  <input type="password" id="api-key-input" class="form-control" placeholder="sk-proj-..." required style="flex: 1;">
+                  <button type="button" class="btn btn-secondary" id="btn-toggle-key-visibility" style="width: auto; padding: 10px 15px;">
+                    <i data-lucide="eye" id="icon-toggle-visibility" style="width: 16px; height: 16px;"></i>
+                  </button>
+                </div>
+                <small style="color: var(--text-muted); display: block; margin-top: 5px;">Key tarayıcınızın local storage alanında saklanır ve doğrudan OpenAI sunucularına istek atılır.</small>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="api-test-model">Test Edilecek Model</label>
+                <select id="api-test-model" class="form-control">
+                  <option value="gpt-4o-mini">gpt-4o-mini (Hızlı & Ekonomik)</option>
+                  <option value="gpt-4o">gpt-4o (Güçlü)</option>
+                  <option value="gpt-3.5-turbo">gpt-3.5-turbo (Eski Standart)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="api-test-prompt">Test Mesajı (Prompt)</label>
+                <input type="text" id="api-test-prompt" class="form-control" value="Bağlantı testi başarılı. Desivo Admin sistemi hazır!" required>
+              </div>
+              
+              <button type="submit" class="btn btn-primary" id="btn-run-api-test">
+                <i data-lucide="play"></i> Test İsteği Gönder (Run)
+              </button>
+            </form>
+            
+            <!-- Result Box -->
+            <div id="api-test-result-box" style="margin-top: 25px; display: none; background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px;">
+              <h4 style="font-family: 'Outfit', sans-serif; font-size: 14px; margin-bottom: 15px; color: var(--secondary); display: flex; align-items: center; gap: 8px;">
+                <i data-lucide="terminal" style="width: 16px; height: 16px;"></i> Test Çıktısı Detayları
+              </h4>
+              
+              <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
+                <div><strong>Durum:</strong> <span id="api-res-status" class="badge-pill badge-active">BAŞARILI</span></div>
+                <div><strong>Gecikme (Latency):</strong> <span id="api-res-latency" style="color: var(--secondary); font-weight: 600;">0 ms</span></div>
+                <div><strong>Kullanılan Model:</strong> <span id="api-res-model" style="color: var(--text-secondary);">gpt-4o-mini</span></div>
+                <div><strong>Token Tüketimi:</strong> <span id="api-res-tokens" style="color: var(--text-secondary);">Prompt: 0 | Completion: 0</span></div>
+                <div style="border-top: 1px solid var(--border); padding-top: 10px; margin-top: 5px;">
+                  <strong>Yapay Zeka Cevabı:</strong>
+                  <p id="api-res-text" style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 4px; border: 1px dashed var(--border); color: #FFA3D7; font-family: monospace; font-size: 12.5px; margin-top: 5px; white-space: pre-wrap;"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- API Usage Card -->
+          <div class="dashboard-panel">
+            <div class="panel-header">
+              <h3 class="panel-title">Günlük Harcama & Kullanım Raporu</h3>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="api-usage-date">Sorgulanacak Tarih</label>
+              <input type="date" id="api-usage-date" class="form-control">
+            </div>
+            
+            <button class="btn btn-secondary" id="btn-fetch-api-usage" style="margin-bottom: 25px; width: auto;">
+              <i data-lucide="bar-chart-3" style="width: 14px; height: 14px;"></i> Kullanım Verilerini Getir
+            </button>
+            
+            <!-- Usage list -->
+            <div id="api-usage-loading" class="loading-overlay" style="display: none; padding: 20px;">
+              <div class="spinner" style="width: 30px; height: 30px;"></div>
+              <div class="loading-text">Kullanım verileri hesaplanıyor...</div>
+            </div>
+            
+            <div id="api-usage-result" style="display: none;">
+              <div class="stats-card card-primary" style="margin-bottom: 20px; padding: 15px 20px;">
+                <div>
+                  <div class="stats-label" style="font-size: 12px;">Seçilen Günün Harcaması</div>
+                  <div class="stats-number" id="api-usage-total-cost" style="font-size: 24px; color: var(--secondary);">$0.00</div>
+                </div>
+                <div class="stats-icon" style="width: 38px; height: 38px; font-size: 16px;">
+                  <i data-lucide="dollar-sign"></i>
+                </div>
+              </div>
+
+              <div class="table-responsive">
+                <table class="custom-table" style="font-size: 12.5px;">
+                  <thead>
+                    <tr>
+                      <th>Kullanılan Model</th>
+                      <th>İstek Sayısı</th>
+                      <th>Toplam Token</th>
+                    </tr>
+                  </thead>
+                  <tbody id="api-usage-table-body">
+                    <!-- Dynamic usage rows -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            <div id="api-usage-no-data" style="font-size: 13px; color: var(--text-secondary); text-align: center; padding: 20px; border: 1px dashed var(--border); border-radius: var(--radius-md);">
+              Seçilen tarihe ait kullanım kaydı bulunamadı veya henüz API Key girilmedi.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SECTION: APP CONFIG (REMOTE CONFIG) ================= -->
+      <section id="tab-config" class="tab-pane">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Uygulama Ayarları (Remote Config)</h1>
+            <p class="page-subtitle">Mobil uygulamanın limitlerini, bakım modunu ve duyurularını canlı olarak yönetin.</p>
+          </div>
+        </div>
+        
+        <div class="analytics-grid">
+          <!-- System Settings Form -->
+          <div class="dashboard-panel">
+            <div class="panel-header">
+              <h3 class="panel-title">Sistem Parametreleri</h3>
+            </div>
+            
+            <div id="config-alert-success" class="alert alert-success" style="display: none;"></div>
+            <div id="config-alert-danger" class="alert alert-danger" style="display: none;"></div>
+            
+            <form id="config-form">
+              <div class="form-group">
+                <label class="form-label" for="config-free-limit">Günlük Ücretsiz Video Üretim Limiti</label>
+                <input type="number" id="config-free-limit" class="form-control" min="0" required>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="config-weekly-ad-limit">Haftalık Reklam İzleme Limiti (Maks. Hak Kazanımı)</label>
+                <input type="number" id="config-weekly-ad-limit" class="form-control" min="0" required>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="config-referral-credit">Referans Başarı Kredisi (+Video Hakkı)</label>
+                <input type="number" id="config-referral-credit" class="form-control" min="0" required>
+              </div>
+              
+              <div class="form-group" style="margin-top: 25px;">
+                <label class="form-label" style="display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none;">
+                  <input type="checkbox" id="config-maintenance-mode" style="width: 18px; height: 18px; accent-color: var(--primary);"> 
+                  <strong>Uygulamayı Bakım Moduna Al (Maintenance Mode)</strong>
+                </label>
+                <small style="color: var(--text-muted); display: block; margin-top: 5px; margin-left: 28px;">Aktif edildiğinde normal kullanıcılar bakım ekranına yönlendirilir, yöneticiler ise uygulamayı kullanmaya devam edebilir.</small>
+              </div>
+
+              <div style="border-top: 1px solid var(--border); margin: 25px 0; padding-top: 20px;">
+                <h4 style="font-family: 'Outfit', sans-serif; font-size: 15px; margin-bottom: 15px; color: var(--secondary);">Sürüm Yönetimi & Zorunlu Güncelleme</h4>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                  <div class="form-group">
+                    <label class="form-label" for="config-min-version-ios">Minimum iOS Sürümü</label>
+                    <input type="text" id="config-min-version-ios" class="form-control" placeholder="1.0.0" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="config-min-version-android">Minimum Android Sürümü</label>
+                    <input type="text" id="config-min-version-android" class="form-control" placeholder="1.0.0" required>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="config-app-store-url">App Store İndirme Adresi (iOS)</label>
+                  <input type="url" id="config-app-store-url" class="form-control" placeholder="https://apps.apple.com/app/..." required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="config-play-store-url">Google Play Store İndirme Adresi (Android)</label>
+                  <input type="url" id="config-play-store-url" class="form-control" placeholder="https://play.google.com/store/apps/details?id=..." required>
+                </div>
+              </div>
+
+              <div style="border-top: 1px solid var(--border); margin: 25px 0; padding-top: 20px;">
+                <h4 style="font-family: 'Outfit', sans-serif; font-size: 15px; margin-bottom: 15px; color: var(--secondary);">Yapay Zeka API Anahtarı Ayarı</h4>
+                <div class="form-group">
+                  <label class="form-label" for="config-openai-key">Canlı OpenAI API Key (Boş bırakılırsa .env kullanılır)</label>
+                  <input type="password" id="config-openai-key" class="form-control" placeholder="sk-proj-...">
+                  <small style="color: var(--text-muted); display: block; margin-top: 5px;">Buraya girdiğiniz anahtar Supabase üzerinden canlı mobil uygulamaya aktarılır ve sunucu hatası durumunda bypass anahtarı olarak çalışır.</small>
+                </div>
+              </div>
+
+              <div style="border-top: 1px solid var(--border); margin: 25px 0; padding-top: 20px;">
+                <h4 style="font-family: 'Outfit', sans-serif; font-size: 15px; margin-bottom: 15px; color: var(--secondary);">Sistem Duyurusu</h4>
+                
+                <div class="form-group">
+                  <label class="form-label" style="display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none;">
+                    <input type="checkbox" id="config-announcement-active" style="width: 18px; height: 18px; accent-color: var(--magenta);">
+                    <strong>Duyuruyu Aktif Et ve Ana Sayfada Göster</strong>
+                  </label>
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label" for="config-announcement-title">Duyuru Başlığı</label>
+                  <input type="text" id="config-announcement-title" class="form-control" placeholder="Örn: Sürüm 1.4 Güncellemesi!">
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label" for="config-announcement-body">Duyuru İçeriği</label>
+                  <textarea id="config-announcement-body" class="form-control" rows="3" placeholder="Kullanıcılara gösterilecek duyuru mesajını buraya yazın..."></textarea>
+                </div>
+              </div>
+              
+              <button type="submit" class="btn btn-primary" id="btn-save-config">
+                <i data-lucide="save"></i> Ayarları Güncelle ve Canlıya Al
+              </button>
+            </form>
+          </div>
+          
+          <!-- Remote Config Information -->
+          <div class="dashboard-panel">
+            <div class="panel-header">
+              <h3 class="panel-title">Uzak Yapılandırma Kılavuzu</h3>
+            </div>
+            <div style="font-size: 13px; line-height: 1.6; color: var(--text-secondary);">
+              <p style="margin-bottom: 15px;">Bu panel, mobil uygulamanın veritabanındaki <code>public.system_settings</code> tablosunu günceller. Uygulama her açıldığında ve verileri yenilediğinde bu ayarları canlı olarak kontrol eder.</p>
+              
+              <ul style="margin-left: 20px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px;">
+                <li><strong>Limitler:</strong> Ücretsiz kullanıcıların günlük maksimum üretim limitleri ve AdMob ile kazanabilecekleri haftalık ek kredi izleme adetleri bu alandan anlık olarak kısıtlanabilir veya esnetilebilir.</li>
+                <li><strong>Bakım Modu:</strong> Sunucu bakımı veya sürüm geçişi sırasında uygulamanın tüm işlevlerini kapatıp kullanıcıya bildirim ekranı göstermek için kullanılır.</li>
+                <li><strong>Duyuru Kartı:</strong> Mobil uygulamanın ana sayfa paneline düşecek şık neon bir bilgilendirme penceresidir. Kapatıldığında cihaz hafızasında tutulur ve tekrar gösterilmez.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+    </main>
+  </div>
+
+  <!-- ================= MODAL: EDIT USER ================= -->
+  <div id="modal-edit-user" class="modal-overlay">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">Kullanıcı Düzenle</h3>
+        <button class="modal-close" onclick="closeUserModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="modal-user-error" class="alert alert-danger" style="display: none;"></div>
+        <input type="hidden" id="edit-user-id">
+        
+        <div class="form-group">
+          <label class="form-label">Kullanıcı E-posta</label>
+          <input type="text" id="edit-user-email" class="form-control" readonly style="background: rgba(255,255,255,0.02); color: var(--text-muted);">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="edit-user-plan">Abonelik Planı</label>
+          <select id="edit-user-plan" class="form-control">
+            <option value="free">Free (Ücretsiz)</option>
+            <option value="creator">Creator (Pro)</option>
+            <option value="agency">Agency (Ajans)</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="edit-user-limit">Üretim Kredi Limiti</label>
+          <input type="number" id="edit-user-limit" class="form-control" min="0">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="edit-user-used">Kullanılan Kredi</label>
+          <input type="number" id="edit-user-used" class="form-control" min="0">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeUserModal()" style="width: auto;">İptal</button>
+        <button class="btn btn-primary" id="btn-save-user" style="width: auto;">Değişiklikleri Kaydet</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: VIEW PROJECT ================= -->
+  <div id="modal-view-project" class="modal-overlay">
+    <div class="modal-container" style="max-width: 750px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="view-project-title">Proje Detayları</h3>
+        <button class="modal-close" onclick="closeProjectModal()">&times;</button>
+      </div>
+      <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 15px; border-radius: var(--radius-md);">
+          <div>
+            <div style="font-size:12px; color: var(--text-muted);">Platform / Mecra</div>
+            <strong id="view-project-platform" style="color:var(--secondary);">Instagram Reels</strong>
+          </div>
+          <div>
+            <div style="font-size:12px; color: var(--text-muted);">Ton / Ses Tonu</div>
+            <strong id="view-project-tone" style="color:var(--secondary);">Mizahi</strong>
+          </div>
+          <div>
+            <div style="font-size:12px; color: var(--text-muted);">Süre</div>
+            <strong id="view-project-duration" style="color:var(--secondary);">15-30 Saniye</strong>
+          </div>
+          <div>
+            <div style="font-size:12px; color: var(--text-muted);">Viral Skor Tahmini</div>
+            <strong id="view-project-viral-score" style="color:var(--magenta);">%92</strong>
+          </div>
+          <div style="grid-column: span 2;">
+            <div style="font-size:12px; color: var(--text-muted);">İçerik Fikri (Girdi)</div>
+            <p id="view-project-idea" style="margin-top:4px; font-size:13px; line-height:1.4;"></p>
+          </div>
+        </div>
+
+        <div id="project-no-content-alert" class="alert alert-danger" style="display:none;">
+          Bu projeye ait oluşturulmuş bir yapay zeka senaryo detayı bulunamadı.
+        </div>
+
+        <div id="project-detail-content-area">
+          <div class="form-group">
+            <label class="form-label">Yapay Zeka Viral Başlığı</label>
+            <input type="text" id="view-project-viral-title" class="form-control" readonly style="background: rgba(255,255,255,0.01); border-style: dashed; font-weight:600; color:#FFA3D7;">
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Giriş Cümleleri (Hooks)</label>
+            <div id="view-project-hooks" style="display:flex; flex-direction:column; gap:8px;"></div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Video Senaryosu (Script)</label>
+            <textarea id="view-project-script" class="form-control" rows="8" readonly style="background: rgba(255,255,255,0.01); border-style: dashed; font-family:monospace; line-height:1.6; font-size:13px;"></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Sahne Planı (Scene Plan)</label>
+            <textarea id="view-project-scene-plan" class="form-control" rows="5" readonly style="background: rgba(255,255,255,0.01); border-style: dashed; line-height:1.5; font-size:13px;"></textarea>
+          </div>
+
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px;">
+            <div class="form-group">
+              <label class="form-label">Ekran Üzeri Yazılar</label>
+              <textarea id="view-project-on-screen" class="form-control" rows="4" readonly style="background: rgba(255,255,255,0.01); border-style: dashed; font-size:12.5px;"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Açıklama (Caption)</label>
+              <textarea id="view-project-caption" class="form-control" rows="4" readonly style="background: rgba(255,255,255,0.01); border-style: dashed; font-size:12.5px;"></textarea>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px;">
+            <div class="form-group">
+              <label class="form-label">Kapaktaki Yazı (Thumbnail Text / Idea)</label>
+              <textarea id="view-project-thumbnail-idea" class="form-control" rows="3" readonly style="background: rgba(255,255,255,0.01); border-style: dashed; font-size:12.5px;"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Harekete Geçirici Mesaj (CTA)</label>
+              <textarea id="view-project-cta" class="form-control" rows="3" readonly style="background: rgba(255,255,255,0.01); border-style: dashed; font-size:12.5px;"></textarea>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Hashtag'ler</label>
+            <input type="text" id="view-project-hashtags" class="form-control" readonly style="background: rgba(255,255,255,0.01); border-style: dashed;">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Geliştirme Önerileri</label>
+            <textarea id="view-project-suggestions" class="form-control" rows="3" readonly style="background: rgba(255,255,255,0.01); border-style: dashed; font-size:12.5px; color:var(--text-secondary);"></textarea>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeProjectModal()" style="width: auto;">Kapat</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main JavaScript File -->
+  <script src="app.js"></script>
+</body>
+</html>
