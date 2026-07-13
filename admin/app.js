@@ -55,6 +55,12 @@ const bugsTable = document.getElementById('bugs-table');
 const bugsTableBody = document.getElementById('bugs-table-body');
 const bugsLoading = document.getElementById('bugs-loading');
 
+// Message manager
+const messagesTable = document.getElementById('messages-table');
+const messagesTableBody = document.getElementById('messages-table-body');
+const messagesLoading = document.getElementById('messages-loading');
+const sidebarMsgBadge = document.getElementById('sidebar-msg-badge');
+
 // Notifications
 const notifyForm = document.getElementById('notify-form');
 const notifyTitle = document.getElementById('notify-title');
@@ -388,6 +394,7 @@ async function loadAllData() {
   loadCharts();
   loadUsers();
   loadBugs();
+  loadMessages();
 }
 
 async function loadDashboardStats() {
@@ -428,6 +435,7 @@ async function loadDashboardStats() {
       sidebarBugBadge.style.display = 'none';
     }
 
+    updateUnreadMessagesBadge();
   } catch (e) {
     console.error('Error loading dashboard stats:', e);
   }
@@ -881,6 +889,186 @@ async function handleClearAllBugs() {
   }
 }
 
+// ================= CONTACT MESSAGES AUDIT =================
+let allMessages = [];
+
+async function loadMessages() {
+  if (!messagesLoading || !messagesTable) return;
+  messagesLoading.style.display = 'flex';
+  messagesTable.style.display = 'none';
+  
+  try {
+    const { data, error } = await supabase
+      .from('contact_messages')
+      .select('*')
+      .order('created_at', { ascending: false });
+      
+    if (error) throw error;
+    allMessages = data || [];
+    
+    renderMessagesTable();
+    updateUnreadMessagesBadge();
+    messagesTable.style.display = 'table';
+  } catch (e) {
+    console.error('Error loading messages:', e);
+    if (messagesTableBody) {
+      messagesTableBody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: #FCA5A5; padding: 30px; font-weight: 500;">Veri yükleme hatası: ${e.message || JSON.stringify(e)}</td></tr>`;
+      messagesTable.style.display = 'table';
+    }
+  } finally {
+    messagesLoading.style.display = 'none';
+  }
+}
+
+function renderMessagesTable() {
+  if (!messagesTableBody) return;
+  messagesTableBody.innerHTML = '';
+  
+  if (allMessages.length === 0) {
+    messagesTableBody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-secondary); padding: 30px;">İletişim mesajı bulunamadı. Web siteniz henüz sakin! 📬</td></tr>`;
+    return;
+  }
+  
+  allMessages.forEach((msg, index) => {
+    const formattedDate = msg.created_at ? new Date(msg.created_at).toLocaleString('tr-TR') : 'Bilinmiyor';
+    const readStatusClass = msg.is_read ? 'badge-success' : 'badge-error';
+    const readStatusText = msg.is_read ? 'Okundu' : 'Yeni / Okunmadı';
+    
+    const trSummary = document.createElement('tr');
+    trSummary.id = `msg-sum-${msg.id || index}`;
+    trSummary.style.cursor = 'pointer';
+    if (!msg.is_read) {
+      trSummary.style.background = 'rgba(236, 72, 153, 0.03)';
+    } else {
+      trSummary.style.background = 'transparent';
+    }
+    trSummary.innerHTML = `
+      <td style="text-align: center; width: 40px;">
+        <i data-lucide="chevron-right" id="msg-icon-${msg.id || index}" style="width: 16px; height: 16px; transition: var(--transition);"></i>
+      </td>
+      <td>${formattedDate}</td>
+      <td><span style="font-weight: 600; color: var(--text);">${msg.name}</span></td>
+      <td><span class="user-email" style="font-size: 13px; color: var(--text-secondary);">${msg.email}</span></td>
+      <td><span class="badge-pill ${readStatusClass}">${readStatusText}</span></td>
+      <td onclick="event.stopPropagation()">
+        <div style="display: flex; gap: 8px;">
+          ${!msg.is_read ? `
+            <button class="action-btn" onclick="handleMarkAsRead('${msg.id}')" title="Okundu Olarak İşaretle" style="background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.2); color: #A7F3D0;">
+              <i data-lucide="check" style="width: 14px; height: 14px;"></i>
+            </button>
+          ` : ''}
+          <button class="action-btn delete-btn" onclick="handleDeleteMessage('${msg.id}')" title="Mesajı Sil">
+            <i data-lucide="trash" style="width: 14px; height: 14px;"></i>
+          </button>
+        </div>
+      </td>
+    `;
+    
+    // Toggle details when clicking anywhere on the summary row (except the actions cell)
+    trSummary.addEventListener('click', (e) => {
+      if (e.target.closest('td:last-child')) return;
+      toggleMessageDetails(msg.id || index);
+    });
+    
+    const trDetail = document.createElement('tr');
+    trDetail.id = `msg-det-${msg.id || index}`;
+    trDetail.className = 'bug-detail-row';
+    trDetail.style.display = 'none';
+    trDetail.innerHTML = `
+      <td colspan="6">
+        <div class="bug-detail-content" style="padding: 15px 20px; background: rgba(10, 11, 20, 0.6); border-left: 3px solid var(--magenta);">
+          <div class="bug-detail-title" style="margin-bottom: 8px; font-weight: 600; color: var(--text-secondary); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">Mesaj İçeriği</div>
+          <div class="bug-description-text" style="font-size: 14.5px; line-height: 1.6; color: var(--text); background: rgba(255, 255, 255, 0.02); padding: 15px; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.05); white-space: pre-wrap; word-break: break-word;">${msg.message}</div>
+        </div>
+      </td>
+    `;
+    
+    messagesTableBody.appendChild(trSummary);
+    messagesTableBody.appendChild(trDetail);
+  });
+  
+  if (window.lucide) {
+    lucide.createIcons();
+  }
+}
+
+window.toggleMessageDetails = function(id) {
+  const row = document.getElementById(`msg-det-${id}`);
+  const icon = document.getElementById(`msg-icon-${id}`);
+  if (!row) return;
+  
+  if (row.style.display === 'none') {
+    row.style.display = 'table-row';
+    if (icon) {
+      icon.style.transform = 'rotate(90deg)';
+      icon.style.color = 'var(--magenta)';
+    }
+  } else {
+    row.style.display = 'none';
+    if (icon) {
+      icon.style.transform = 'rotate(0deg)';
+      icon.style.color = '';
+    }
+  }
+};
+
+window.handleMarkAsRead = async function(id) {
+  try {
+    const { error } = await supabase
+      .from('contact_messages')
+      .update({ is_read: true })
+      .eq('id', id);
+      
+    if (error) throw error;
+    
+    loadMessages();
+    loadDashboardStats();
+  } catch (e) {
+    console.error('Error marking message as read:', e);
+    alert('İşlem başarısız: ' + e.message);
+  }
+};
+
+window.handleDeleteMessage = async function(id) {
+  if (!confirm('Bu iletişim mesajını silmek istediğinizden emin misiniz?')) return;
+  
+  try {
+    const { error } = await supabase
+      .from('contact_messages')
+      .delete()
+      .eq('id', id);
+      
+    if (error) throw error;
+    
+    loadMessages();
+    loadDashboardStats();
+  } catch (e) {
+    console.error('Error deleting message:', e);
+    alert('Mesaj silinemedi: ' + e.message);
+  }
+};
+
+async function updateUnreadMessagesBadge() {
+  if (!sidebarMsgBadge) return;
+  try {
+    const { count, error } = await supabase
+      .from('contact_messages')
+      .select('*', { count: 'exact', head: true })
+      .eq('is_read', false);
+      
+    if (error) throw error;
+    
+    if (count > 0) {
+      sidebarMsgBadge.textContent = count;
+      sidebarMsgBadge.style.display = 'inline-flex';
+    } else {
+      sidebarMsgBadge.style.display = 'none';
+    }
+  } catch (e) {
+    console.error('Error updating unread count badge:', e);
+  }
+}
+
 // ================= BROADCAST NOTIFICATIONS =================
 async function handleSendNotification(e) {
   e.preventDefault();
@@ -1178,6 +1366,8 @@ function switchTab(tabId) {
     loadUsers();
   } else if (tabId === 'tab-bugs') {
     loadBugs();
+  } else if (tabId === 'tab-messages') {
+    loadMessages();
   } else if (tabId === 'tab-overview') {
     loadDashboardStats();
     loadCharts();

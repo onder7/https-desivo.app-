@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Desivo — AI Creator OS | Tek Fikirden Viral Videoya</title>
-  <script defer src="https://analytics.nefesol.net/script.js" data-website-id="ef69e3e7-ffe0-4631-a4e1-01fd4cb61c6d"></script>
+  
   <!-- SEO Meta Tags -->
   <meta name="description" content="Desivo, içerik üreticileri için tasarlanmış yapay zeka destekli içerik stüdyosudur. Tek bir fikirden viral kancalar, A/B testleri, altyazı stilleri ve platforma özel senaryolar üretin.">
   <meta name="keywords" content="yapay zeka, video, içerik üreticisi, reels, tiktok, youtube, teleprompter, kanca ab testi, senaryo üretici">
@@ -38,7 +38,16 @@
           <li><a href="#features" id="link-features">Özellikler</a></li>
           <li><a href="#how-it-works" id="link-how-it-works">Nasıl Çalışır?</a></li>
           <li><a href="#pricing" id="link-pricing">Paketler</a></li>
+          <li><a href="#contact" id="link-contact">İletişim</a></li>
           <li><a href="#download" id="link-download" class="nav-cta">Hemen İndir</a></li>
+          <li>
+            <select id="lang-select" onchange="changeLanguage(this.value)" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #fff; padding: 6px 10px; font-size: 11px; font-weight: 700; outline: none; cursor: pointer; margin-left: 10px; text-transform: uppercase;">
+              <option value="tr">TR 🇹🇷</option>
+              <option value="en">EN 🇬🇧</option>
+              <option value="es">ES 🇪🇸</option>
+              <option value="de">DE 🇩🇪</option>
+            </select>
+          </li>
         </ul>
       </nav>
     </div>
@@ -50,10 +59,10 @@
       <div class="hero-text">
         <div class="badge">
           <span class="badge-dot"></span>
-          Yapay Zeka Destekli İçerik Stüdyosu
+          <span id="hero-badge-text">Yapay Zeka Destekli İçerik Stüdyosu</span>
         </div>
-        <h1>Sosyal Medyada <span>Viral Olmanın</span> En Kısa Yolu.</h1>
-        <p>Desivo, tek bir fikri dakikalar içinde yüksek dönüşümlü Reels, TikTok ve YouTube senaryolarına dönüştürür. Sinirsel kanca analizleri, otomatik teleprompter rehberi ve CTR optimizasyonlu araçlarla sosyal medyada büyümenizi fütüristik bir boyuta taşıyın.</p>
+        <h1 id="hero-title">Sosyal Medyada <span>Viral Olmanın</span> En Kısa Yolu.</h1>
+        <p id="hero-desc">Desivo, tek bir fikri dakikalar içinde yüksek dönüşümlü Reels, TikTok ve YouTube senaryolarına dönüştürür. Sinirsel kanca analizleri, otomatik teleprompter rehberi ve CTR optimizasyonlu araçlarla sosyal medyada büyümenizi fütüristik bir boyuta taşıyın.</p>
         
         <div class="app-stores">
           <a href="https://apps.apple.com/tr/app/desivo-ai-creator-os/id6779720007?l=tr" class="store-button" id="store-apple-hero" target="_blank" rel="noopener noreferrer">
@@ -92,8 +101,8 @@
   <!-- Features Grid Section -->
   <section class="features reveal" id="features">
     <div class="container">
-      <h2>Sosyal Medya Güç İstasyonunuz</h2>
-      <p style="text-align: center; max-width: 600px; margin: 0 auto 50px auto;">Desivo, içerik üretiminizin her aşamasını hızlandıran ve profesyonelleştiren 8 bağımsız yapay zeka modülü içerir.</p>
+      <h2 id="features-title">Sosyal Medya Güç İstasyonunuz</h2>
+      <p id="features-desc" style="text-align: center; max-width: 600px; margin: 0 auto 50px auto;">Desivo, içerik üretiminizin her aşamasını hızlandıran ve profesyonelleştiren 11 bağımsız yapay zeka modülü içerir.</p>
       
       <div class="features-grid reveal-stagger">
         <!-- Feature 1 -->
@@ -135,8 +144,8 @@
         <!-- Feature 7 -->
         <div class="feature-card" id="feat-audit">
           <div class="feature-icon">📊</div>
-          <h3>Performans Denetçisi</h3>
-          <p>Videonuzun izlenme ve retention (elde tutma) metriklerini yapay zeka denetimine sokarak nerede hata yaptığınızı ve nasıl düzelteceğinizi öğrenin.</p>
+          <h3>AI İzleyici Simülatörü</h3>
+          <p>Yapay zeka ile video izleyici elde tutma (retention) grafiklerinizi simüle edin, kritik drop-off saniyelerini ve düzeltici çözümleri anında görün.</p>
         </div>
         <!-- Feature 8 -->
         <div class="feature-card" id="feat-brands">
@@ -150,6 +159,18 @@
           <h3>Trend Avcısı (Trend Hunter)</h3>
           <p>Sosyal medyadaki popüler akımları ve viral konu eğilimlerini gerçek zamanlı takip ederek izlenme potansiyeli en yüksek içerik fikirlerini yakalayın.</p>
         </div>
+        <!-- Feature 10 -->
+        <div class="feature-card" id="feat-canvas">
+          <div class="feature-icon">🎨</div>
+          <h3>Tuval Tasarım Editörü</h3>
+          <p>Yapay zeka ile üretilen video kapakları ve slaytları üzerine marka logolarınızı, stickerları ve metinleri sürükleyip bırakarak özelleştirin.</p>
+        </div>
+        <!-- Feature 11 -->
+        <div class="feature-card" id="feat-streak">
+          <div class="feature-icon">⚡</div>
+          <h3>Günlük Üretim Serisi</h3>
+          <p>Oyunlaştırılmış Creator Streak Tracker ile günlük içerik üretim serinizi takip edin, üretim alışkanlığı kazanın.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -157,8 +178,8 @@
   <!-- Ecosystem Section -->
   <section class="ecosystem-section reveal" id="ecosystem">
     <div class="container">
-      <h2>Fikirden Analize: Desivo Ekosistemi</h2>
-      <p class="ecosystem-subtitle">Fikirlerinizin viral içeriklere dönüşme yolculuğu. Tüm yapay zeka modüllerimiz birbiriyle entegre çalışarak tam bir içerik stüdyosu oluşturur.</p>
+      <h2 id="ecosystem-title">Fikirden Analize: Desivo Ekosistemi</h2>
+      <p class="ecosystem-subtitle" id="ecosystem-desc">Fikirlerinizin viral içeriklere dönüşme yolculuğu. Tüm yapay zeka modüllerimiz birbiriyle entegre çalışarak tam bir içerik stüdyosu oluşturur.</p>
       
       <div class="ecosystem-grid">
         <!-- Left: Interactive steps workflow -->
@@ -846,6 +867,39 @@
     </div>
   </section>
 
+  <!-- Contact Form Section -->
+  <section class="contact-section reveal" id="contact" style="padding: 80px 0; background: #07080D; border-top: 1px solid rgba(255, 255, 255, 0.03);">
+    <div class="container" style="max-width: 600px; margin: 0 auto; padding: 0 24px;">
+      <h2 style="text-align: center; margin-bottom: 10px; font-weight: 900; letter-spacing: -0.5px; color: #fff;">Bizimle İletişime Geçin</h2>
+      <p style="text-align: center; color: #8E93B0; font-size: 14px; margin-bottom: 40px;">Sorularınız, görüşleriniz veya iş ortaklığı teklifleriniz için formu doldurabilirsiniz.</p>
+      
+      <form id="contact-form" onsubmit="handleContactSubmit(event)" style="display: flex; flex-direction: column; gap: 20px;">
+        <div class="form-group" style="display: flex; flex-direction: column; gap: 6px;">
+          <label for="contact-name" style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #8E93B0; letter-spacing: 0.5px;">Adınız Soyadınız</label>
+          <input type="text" id="contact-name" required placeholder="Örn: Hasan Kökçe" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 14px 16px; color: #fff; font-size: 14px; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#6C63FF'" onblur="this.style.borderColor='rgba(255,255,255,0.06)'">
+        </div>
+        
+        <div class="form-group" style="display: flex; flex-direction: column; gap: 6px;">
+          <label for="contact-email" style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #8E93B0; letter-spacing: 0.5px;">E-Posta Adresiniz</label>
+          <input type="email" id="contact-email" required placeholder="hasan@example.com" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 14px 16px; color: #fff; font-size: 14px; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#6C63FF'" onblur="this.style.borderColor='rgba(255,255,255,0.06)'">
+        </div>
+        
+        <div class="form-group" style="display: flex; flex-direction: column; gap: 6px;">
+          <label for="contact-message" style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #8E93B0; letter-spacing: 0.5px;">Mesajınız</label>
+          <textarea id="contact-message" required placeholder="Mesajınızı buraya yazın..." rows="5" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 14px 16px; color: #fff; font-size: 14px; outline: none; resize: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#6C63FF'" onblur="this.style.borderColor='rgba(255,255,255,0.06)'"></textarea>
+        </div>
+        
+        <button type="submit" class="submit-btn" style="background: linear-gradient(135deg, #6C63FF, #EC4899); border: none; border-radius: 12px; padding: 16px; color: #fff; font-size: 14px; font-weight: 800; cursor: pointer; transition: opacity 0.2s; box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+          Mesajı Gönder 🚀
+        </button>
+        
+        <div id="form-success" style="display: none; padding: 12px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; color: #10B981; font-size: 13px; font-weight: 600; text-align: center; margin-top: 10px;">
+          Mesajınız başarıyla iletildi! En kısa sürede dönüş sağlayacağız.
+        </div>
+      </form>
+    </div>
+  </section>
+
   <!-- Footer Section -->
   <footer id="main-footer">
     <div class="container">
@@ -858,19 +912,28 @@
           <a href="app-ads.txt" id="link-app-ads" target="_blank">app-ads.txt</a>
           <a href="privacy.html" id="link-privacy">Gizlilik Sözleşmesi</a>
           <a href="terms.html" id="link-terms">Kullanım Koşulları</a>
+          <a href="#contact" id="link-footer-contact">İletişim</a>
           <a href="#" id="link-support">Destek</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 Desivo. Tüm Hakları Saklıdır.</p>
-        <p>Designed with luxury aesthetic for Creators.</p>
+        <p id="footer-copy">&copy; 2026 Desivo. Tüm Hakları Saklıdır.</p>
+        <p id="footer-tagline">Designed with luxury aesthetic for Creators.</p>
       </div>
     </div>
   </footer>
 
+  <!-- Supabase JS Client Library -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.43.4/dist/umd/supabase.js" crossorigin="anonymous"></script>
+
   <!-- Ecosystem Interaction Script -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // Initialize Supabase Client
+      const supabaseUrl = 'https://olwqkfltyxojrwmoxfqf.supabase.co';
+      const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9sd3FrZmx0eXhvanJ3bW94ZnFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAyMzkwNTEsImV4cCI6MjA5NTgxNTA1MX0.duoJUgcT3pLppCF3hyD2UyzqONiPL0zUsIFUKotidpw';
+      const supabase = window.supabase.createClient(supabaseUrl, supabaseAnonKey);
+
       const steps = document.querySelectorAll('.flow-step');
       const screens = document.querySelectorAll('.screen-content');
       const activePath = document.getElementById('glow-path-active');
@@ -1045,26 +1108,86 @@
         });
       });
 
-      // Preset template hooks for simulator
-      const hookTemplates = {
-        a: {
-          1: "Sosyal medyada hızlı büyümek için bu 3 yöntemi deneyin.",
-          2: "Hiç düşündünüz mü sosyal medya algoritması neden sizi öne çıkarmıyor?"
+      // Preset template hooks for simulator with localization support
+      const widgetTranslations = {
+        tr: {
+          alertEmpty: 'Lütfen karşılaştırmak için iki kanca seçeneği de girin.',
+          winnerA: '🏆 KAZANAN: KANCA A',
+          winnerB: '🏆 KAZANAN: KANCA B',
+          winnerDesc: 'Bu kanca, merak uyandırma ve hedef kitleyi ilk 3 saniyede durdurma oranlarında diğer seçeneğe göre belirgin düzeyde üstünlük sağlamıştır. Mobil uygulamada bu kancayı kullanarak anında viral Reels senaryoları üretebilirsiniz!',
+          templates: {
+            a: {
+              1: "Sosyal medyada hızlı büyümek için bu 3 yöntemi deneyin.",
+              2: "Hiç düşündünüz mü sosyal medya algoritması neden sizi öne çıkarmıyor?"
+            },
+            b: {
+              1: "Sosyal medyada 100k takipçiye ulaşmanın kesinlikle en hızlı yolu!",
+              2: "İçerik üretiyorsanız sakın bu ölümcül hatayı yapmayın!"
+            }
+          }
         },
-        b: {
-          1: "Sosyal medyada 100k takipçiye ulaşmanın kesinlikle en hızlı yolu!",
-          2: "İçerik üretiyorsanız sakın bu ölümcül hatayı yapmayın!"
+        en: {
+          alertEmpty: 'Please enter both hook options to compare.',
+          winnerA: '🏆 WINNER: HOOK A',
+          winnerB: '🏆 WINNER: HOOK B',
+          winnerDesc: 'This hook has shown significant superiority over the other option in curiosity and stopping the scroll in the first 3 seconds. Use this hook in the mobile app to generate viral Reels scripts instantly!',
+          templates: {
+            a: {
+              1: "Try these 3 methods to grow fast on social media.",
+              2: "Have you ever wondered why the social media algorithm isn't promoting you?"
+            },
+            b: {
+              1: "Absolutely the fastest way to reach 100k followers on social media!",
+              2: "If you are creating content, do not make this fatal mistake!"
+            }
+          }
+        },
+        es: {
+          alertEmpty: 'Por favor, introduce ambas opciones de gancho para comparar.',
+          winnerA: '🏆 GANADOR: GANCHO A',
+          winnerB: '🏆 GANADOR: GANCHO B',
+          winnerDesc: 'Este gancho ha mostrado una superioridad significativa sobre la otra opción en curiosidad y en detener el scroll en los primeros 3 segundos. ¡Usa este gancho en la aplicación móvil para generar guiones virales de Reels al instante!',
+          templates: {
+            a: {
+              1: "Prueba estos 3 métodos para crecer rápido en las redes sociales.",
+              2: "¿Alguna vez te has preguntado por qué el algoritmo de las redes sociales no te promociona?"
+            },
+            b: {
+              1: "¡Absolutamente la forma más rápida de llegar a 100k seguidores en las redes sociales!",
+              2: "Si estás creando contenido, ¡no cometas este error fatal!"
+            }
+          }
+        },
+        de: {
+          alertEmpty: 'Bitte geben Sie beide Hook-Optionen ein, um sie zu vergleichen.',
+          winnerA: '🏆 GEWINNER: HOOK A',
+          winnerB: '🏆 GEWINNER: HOOK B',
+          winnerDesc: 'Dieser Hook hat eine deutliche Überlegenheit gegenüber der anderen Option bei der Neugiererzeugung und dem Stoppen des Scrollens in den ersten 3 Sekunden gezeigt. Verwenden Sie diesen Hook in der mobilen App, um sofort virale Reels-Skripte zu erstellen!',
+          templates: {
+            a: {
+              1: "Probieren Sie diese 3 Methoden aus, um in den sozialen Medien schnell zu wachsen.",
+              2: "Haben Sie sich jemals gefragt, warum der Social-Media-Algorithmus Sie nicht vorschlägt?"
+            },
+            b: {
+              1: "Absolut der schnellste Weg, um 100k Follower in den sozialen Medien zu erreichen!",
+              2: "Wenn Sie Inhalte erstellen, machen Sie diesen fatalen Fehler nicht!"
+            }
+          }
         }
       };
 
       window.loadHookTemplate = function(type, id) {
+        const lang = localStorage.getItem('desivo_lang') || 'tr';
+        const trans = widgetTranslations[lang] || widgetTranslations['tr'];
         const textarea = document.getElementById(`hook-input-${type}`);
-        if (textarea && hookTemplates[type][id]) {
-          textarea.value = hookTemplates[type][id];
+        if (textarea && trans.templates[type][id]) {
+          textarea.value = trans.templates[type][id];
         }
       };
 
       window.simulateHookTest = function() {
+        const lang = localStorage.getItem('desivo_lang') || 'tr';
+        const trans = widgetTranslations[lang] || widgetTranslations['tr'];
         const inputA = document.getElementById('hook-input-a').value.trim();
         const inputB = document.getElementById('hook-input-b').value.trim();
         const runBtn = document.getElementById('run-test-btn');
@@ -1072,7 +1195,7 @@
         const results = document.getElementById('tester-results');
         
         if (!inputA || !inputB) {
-          alert('Lütfen karşılaştırmak için iki kanca seçeneği de girin.');
+          alert(trans.alertEmpty);
           return;
         }
         
@@ -1100,7 +1223,7 @@
             if (/\d+/.test(text)) score += 12;
             
             // Check for curiosity keywords
-            const curiosityWords = ['sır', 'gizli', 'hata', 'yasak', 'kesinlikle', 'sakın', 'nasıl', 'neden'];
+            const curiosityWords = ['sır', 'gizli', 'hata', 'yasak', 'kesinlikle', 'sakın', 'nasıl', 'neden', 'secret', 'secret key', 'mistake', 'never', 'how', 'why', 'secreto', 'error', 'nunca', 'cómo', 'por qué', 'geheim', 'fehler', 'nie', 'wie', 'warum'];
             curiosityWords.forEach(word => {
               if (text.toLowerCase().includes(word)) score += 8;
             });
@@ -1155,14 +1278,14 @@
           
           if (scoreA >= scoreB) {
             winnerBanner.classList.remove('magenta-win');
-            winnerTag.textContent = '🏆 KAZANAN: KANCA A';
+            winnerTag.textContent = trans.winnerA;
             winnerTextEl.textContent = `"${inputA.substring(0, 50)}${inputA.length > 50 ? '...' : ''}"`;
-            winnerDescEl.textContent = 'Bu kanca, merak uyandırma ve hedef kitleyi ilk 3 saniyede durdurma oranlarında diğer seçeneğe göre belirgin düzeyde üstünlük sağlamıştır. Mobil uygulamada bu kancayı kullanarak anında viral Reels senaryoları üretebilirsiniz!';
+            winnerDescEl.textContent = trans.winnerDesc;
           } else {
             winnerBanner.classList.add('magenta-win');
-            winnerTag.textContent = '🏆 KAZANAN: KANCA B';
+            winnerTag.textContent = trans.winnerB;
             winnerTextEl.textContent = `"${inputB.substring(0, 50)}${inputB.length > 50 ? '...' : ''}"`;
-            winnerDescEl.textContent = 'Bu kanca, merak uyandırma ve hedef kitleyi ilk 3 saniyede durdurma oranlarında diğer seçeneğe göre belirgin düzeyde üstünlük sağlamıştır. Mobil uygulamada bu kancayı kullanarak anında viral Reels senaryoları üretebilirsiniz!';
+            winnerDescEl.textContent = trans.winnerDesc;
           }
           
         }, 1500);
@@ -1348,6 +1471,999 @@
 
       // Run once on load to position elements correctly
       setTimeout(updateParallax, 100);
+
+      // Translations Map
+      const translations = {
+        tr: {
+          '#link-features': 'Özellikler',
+          '#link-how-it-works': 'Nasıl Çalışır?',
+          '#link-pricing': 'Paketler',
+          '#link-contact': 'İletişim',
+          '#link-download': 'Hemen İndir',
+          '#hero-badge-text': 'Yapay Zeka Destekli İçerik Stüdyosu',
+          '#hero-title': 'Sosyal Medyada <span>Viral Olmanın</span> En Kısa Yolu.',
+          '#hero-desc': 'Desivo, tek bir fikri dakikalar içinde yüksek dönüşümlü Reels, TikTok ve YouTube senaryolarına dönüştürür. Sinirsel kanca analizleri, otomatik teleprompter rehberi ve CTR optimizasyonlu araçlarla sosyal medyada büyümenizi fütüristik bir boyuta taşıyın.',
+          '#features-title': 'Sosyal Medya Güç İstasyonunuz',
+          '#features-desc': 'Desivo, içerik üretiminizin her aşamasını hızlandıran ve profesyonelleştiren 11 bağımsız yapay zeka modülü içerir.',
+          '#feat-script h3': 'Fikirden Videoya',
+          '#feat-script p': 'Yapay zeka; PAS, AIDA ve Storytelling gibi satış kanıtlı formülleri kullanarak video senaryolarınızı anında sahneler halinde hazırlar.',
+          '#feat-abtest h3': 'Hook A/B Test Laboratuvarı',
+          '#feat-abtest p': 'İki video kancasını nöro-pazarlama algoritmalarıyla yarıştırın, izleyiciyi ilk 3 saniyede durduracak kazanan kancayı belirleyin.',
+          '#feat-slide h3': 'Slayt Tasarım Motoru',
+          '#feat-slide p': 'Instagram ve LinkedIn için marka logonuz ve renklerinizle uyumlu fütüristik PDF kaydırmalı (Carousel) slaytlar tasarlayıp indirin.',
+          '#feat-repurpose h3': 'Tek Fikir, Tüm Mecralar',
+          '#feat-repurpose p': 'Girdiğiniz tek bir konudan aynı anda video senaryosu, sıralı X dizisi (thread) ve profesyonel LinkedIn gönderisi türetin.',
+          '#feat-prompter h3': 'Akıllı Teleprompter',
+          '#feat-prompter p': 'Kamera karşısında ezber yapmadan konuşun. Konuşma hızınıza göre otomatik akan teleprompter ile pürüzsüz kayıtlar üretin.',
+          '#feat-subtitle h3': 'Viral Altyazı Tasarımcısı',
+          '#feat-subtitle p': 'Sosyal medyadaki popüler altyazı şablonlarını simüle edin, kritik kelimeleri neon renklerle vurgulayarak izlenme sürelerini artırın.',
+          '#feat-audit h3': 'AI İzleyici Simülatörü',
+          '#feat-audit p': 'Yapay zeka ile video izleyici elde tutma (retention) grafiklerinizi simüle edin, kritik drop-off saniyelerini ve düzeltici çözümleri anında görün.',
+          '#feat-brands h3': 'Ajans İçin Çoklu Marka',
+          '#feat-brands p': "MarkaOS altyapısı sayesinde 5 farklı müşterinizin/markanızın kitle DNA'sını ve ses tonunu ayrı profillerde yönetin.",
+          '#feat-trend h3': 'Trend Avcısı (Trend Hunter)',
+          '#feat-trend p': 'Sosyal medyadaki popüler akımları ve viral konu eğilimlerini gerçek zamanlı takip ederek izlenme potansiyeli en yüksek içerik fikirlerini yakalayın.',
+          '#feat-canvas h3': 'Tuval Tasarım Editörü',
+          '#feat-canvas p': 'Yapay zeka ile üretilen video kapakları ve slaytları üzerine marka logolarınızı, stickerları ve metinleri sürükleyip bırakarak özelleştirin.',
+          '#feat-streak h3': 'Günlük Üretim Serisi',
+          '#feat-streak p': 'Oyunlaştırılmış Creator Streak Tracker ile günlük içerik üretim serinizi takip edin, üretim alışkanlığı kazanın.',
+          '#ecosystem-title': 'Fikirden Analize: Desivo Ekosistemi',
+          '#ecosystem-desc': 'Fikirlerinizin viral içeriklere dönüşme yolculuğu. Tüm yapay zeka modüllerimiz birbiriyle entegre çalışarak tam bir içerik stüdyosu oluşturur.',
+          '.flow-step[data-step="1"] .step-tag': '01. BÖLÜM',
+          '.flow-step[data-step="1"] h3': 'Günün Fikri (Keşif)',
+          '.flow-step[data-step="1"] p': 'Günün en trend içerik fikrini yakalayın ve video başarı eğrilerinizi takip edin.',
+          '.flow-step[data-step="2"] .step-tag': '02. BÖLÜM',
+          '.flow-step[data-step="2"] h3': 'İçerik Üretici (Üretim)',
+          '.flow-step[data-step="2"] p': 'Fikrinizi girip platform ve içerik konsepti seçimiyle video senaryolarınızı anında oluşturun.',
+          '.flow-step[data-step="3"] .step-tag': '03. BÖLÜM',
+          '.flow-step[data-step="3"] h3': 'Sektör Seçimi (Hedefleme)',
+          '.flow-step[data-step="3"] p': "Dijital pazarlamadan dropshipping'e 20+ kategori arasından markanızı konumlandırın.",
+          '.flow-step[data-step="4"] .step-tag': '04. BÖLÜM',
+          '.flow-step[data-step="4"] h3': 'Projelerim Paneli (Yönetim)',
+          '.flow-step[data-step="4"] p': 'Reels, LinkedIn ve diğer tüm mecralar için ürettiğiniz projeleri tek panelde saklayın.',
+          '.flow-step[data-step="5"] .step-tag': '05. BÖLÜM',
+          '.flow-step[data-step="5"] h3': 'Gelişmiş AI Modülleri (Araç Seti)',
+          '.flow-step[data-step="5"] p': 'Trend Hunter, Medya Kiti, Kanca Havuzu ve Performans Denetçisini anında başlatın.',
+          '#hook-tester h2': 'Kanca A/B Test Laboratuvarı',
+          '#hook-tester p': 'Videolarınızın ilk 3 saniyesini kurtarın. İki farklı video girişini (kancasını) yapay zekaya yarıştırın ve kazananı anında görün.',
+          '.scan-text': 'Nöro-Pazarlama Algoritmaları Taranıyor...',
+          '.hook-label.a': '<span>🔵</span> Kanca A Seçeneği (A/B Test)',
+          '.hook-label.b': '<span>🔴</span> Kanca B Seçeneği (A/B Test)',
+          '.hook-input-group:nth-of-type(1) .template-btn:nth-of-type(1)': 'Sıradan Anlatım',
+          '.hook-input-group:nth-of-type(1) .template-btn:nth-of-type(2)': 'Soru ile Giriş',
+          '.hook-input-group:nth-of-type(2) .template-btn:nth-of-type(1)': 'Merak Tetikleyici',
+          '.hook-input-group:nth-of-type(2) .template-btn:nth-of-type(2)': 'Acı Noktası Girişi',
+          '#run-test-btn': '<span>🚀</span> Kancaları Yarıştır',
+          '#winner-tag': '🏆 KAZANAN: KANCA A',
+          '#winner-desc': 'Bu kanca, merak uyandırma ve hedef kitleyi ilk 3 saniyede durdurma oranlarında diğer seçeneğe göre belirgin düzeyde üstünlük sağlamıştır.',
+          '.metric-bar-group:nth-of-type(1) .metric-bar-title': 'Dikkat Çekme Gücü',
+          '.metric-bar-group:nth-of-type(2) .metric-bar-title': 'Merak Uyandırma',
+          '.metric-bar-group:nth-of-type(3) .metric-bar-title': 'Akılda Kalıcılık',
+          '#why-desivo h2': 'Sadece İçerik Üretmeyin, Daha Akıllı Üretin',
+          '#why-desivo p': 'Desivo, sosyal medya algoritmalarını ve izleyici psikolojisini analiz ederek içerik üretim sürecinizi büyüme odaklı bir veri merkezine dönüştürür.',
+          '#why-desivo .metric-card:nth-of-type(1) h4': 'Daha Hızlı Üretim',
+          '#why-desivo .metric-card:nth-of-type(1) p': 'Yapay zeka asistanı ve platform şablonları sayesinde, normalde saatler süren senaryo yazımı ve slayt tasarımı işlemlerini saniyeler içinde tamamlayın.',
+          '#why-desivo .metric-card:nth-of-type(2) h4': 'İzleyici Tutma Oranı',
+          '#why-desivo .metric-card:nth-of-type(2) p': 'Hook A/B Test Laboratuvarı ve viral kanca havuzu ile videolarınızın ilk 3 saniyesini optimize edin, izleyicileri ekranda kilitleyin.',
+          '#why-desivo .metric-card:nth-of-type(3) h4': 'Marka Uyumlu Dil',
+          '#why-desivo .metric-card:nth-of-type(3) p': "Çoklu Marka OS kiti sayesinde yapay zeka, içeriklerinizi her zaman markanızın benzersiz ses tonu, kitle DNA'sına sadık kalarak hazırlar.",
+          '#why-desivo .metric-card:nth-of-type(4) h4': 'Ezber ve Kamera Stresi',
+          '#why-desivo .metric-card:nth-of-type(4) p': 'Konuşma hızınıza göre otomatik akan akıllı teleprompter sayesinde kamera karşısında takılmadan, tek seferde pürüzsüz kayıtlar alın.',
+          '#faq h2': 'Sıkça Sorulan Sorular',
+          '#faq p': 'Desivo hakkında merak ettiğiniz tüm soruların detaylı yanıtlarını aşağıda bulabilirsiniz.',
+          '.faq-item:nth-of-type(1) summary': 'İçerik üretim limitlerim ne zaman yenilenir?',
+          '.faq-item:nth-of-type(1) .faq-answer': 'Paket limitleriniz ve yapay zeka kredi haklarınız, satın aldığınız tarihten itibaren tam 1 ay sonra (fatura yenileme tarihinizde) otomatik olarak sıfırlanır ve yenilenir. Kullanılmayan haklar sonraki aya devretmez.',
+          '.faq-item:nth-of-type(2) summary': 'AI Teleprompter stüdyosu internet olmadan çalışır mı?',
+          '.faq-item:nth-of-type(2) .faq-answer': 'Evet! Teleprompter stüdyomuz ve kamera kayıt modülümüz tamamen cihazınızın yerel donanım gücünü kullanır. İnternetiniz olmasa bile teleprompter önceden yüklenmiş senaryonuzla çalışmaya devam eder ve kayıtlarınızı galerinize kaydeder.',
+          '.faq-item:nth-of-type(3) summary': 'Üretilen senaryo ve kapak tasarımlarının telif hakları kime aittir?',
+          '.faq-item:nth-of-type(3) .faq-answer': 'Yapay zekamız tarafından üretilen tüm senaryolar, kurgular ve kapak resimlerinin tüm fikri ve ticari mülkiyet hakları %100 size (kullanıcıya) aittir. Herhangi bir telif hakkı talebinde bulunulmaz, dilediğiniz platformda ticari olarak yayınlayabilir ve gelir elde edebilirsiniz.',
+          '.faq-item:nth-of-type(4) summary': 'Marka Kiti (Brand Kit) nedir ve ne işe yarar?',
+          '.faq-item:nth-of-type(4) .faq-answer': 'Marka Kiti, videolarınızdaki benzersiz tarzınızı yapay zekaya öğretmek için tasarlanmıştır. Buraya markanızın adını, logosunu, hedef kitlenizi, tonlamasını (örn. samimi, ciddi, esprili) ve anahtar kelimelerini kaydedersiniz. Yapay zeka senaryo yazarken bu bilgileri otomatik harmanlayarak kişiselleştirilmiş çıktılar üretir.',
+          '.faq-item:nth-of-type(5) summary': 'Medya Kiti (Media Kit) nedir ve "Doğrulanmış Hesap" ne anlama gelir?',
+          '.faq-item:nth-of-type(5) .faq-answer': 'Medya Kiti, markalar ve ajanslarla işbirliği yaparken kullanabileceğiniz dijital özgeçmişinizdir. Sosyal hesaplarınızı güvenli simülatör geçidimizle bağladığınızda yeşil "Doğrulanmış" rozeti alırsınız. Bu rozet, istatistiklerinizin gerçek olduğunu gösterir ve PDF çıktısında parlayarak markaların size olan güvenini artırır.',
+          '.faq-item:nth-of-type(6) summary': 'AI Thumbnail görsel kalitesini nasıl artırabilirim?',
+          '.faq-item:nth-of-type(6) .faq-answer': 'Görsel üretiminde girdiğiniz konu ne kadar detaylı olursa, yapay zekanın çizeceği sahne o kadar zenginleşir. Konunuzda baskın renk tonlarını, ışık biçimini (örn. sinematik, stüdyo ışığı) ve odaklanılacak nesneleri belirtmeniz tıklama oranını (CTR) artıran sonuçlar almanızı sağlar.',
+          '.faq-item:nth-of-type(7) summary': 'Aboneliğimi nasıl iptal edebilirim?',
+          '.faq-item:nth-of-type(7) .faq-answer': 'Aboneliğinizi dilediğiniz zaman hiçbir gerekçe göstermeden iptal edebilirsiniz. İptal işlemi Apple altyapısı üzerinden gerçekleştirilir. Cihazınızda Ayarlar > Apple ID (isminizin yazdığı en üst alan) > Abonelikler yolunu izleyerek aboneliğinizi tek tıkla durdurabilirsiniz.',
+          '.faq-item:nth-of-type(8) summary': 'Satın aldığım paketi farklı bir cihaza nasıl aktarırım?',
+          '.faq-item:nth-of-type(8) .faq-answer': 'Aboneliğiniz Apple ID hesabınıza bağlıdır. Aynı Apple ID ile giriş yaptığınız tüm iPhone ve iPad cihazlarınızda "Abonelik Paketleri" ekranına gidip "Satın Alımları Geri Yükle" butonunu kullanarak aboneliğinizi hiçbir ek ödemeden anında aktifleştirebilirsiniz.',
+          '#how-it-works h2': 'Nasıl Çalışır?',
+          '#how-it-works p': 'Desivo ile sosyal medya stüdyonuzu cebinizde taşıyın. İşte fikirlerinizi viral içeriklere dönüştürme süreci:',
+          '#how-it-works .step-card:nth-of-type(1) h3': 'Fikir Üret',
+          '#how-it-works .step-card:nth-of-type(1) p': 'Uygulamayı açın ve aklınızdaki içerik konusunu girin ya da yapay zekanın size trendlere uygun, yüksek etkileşimli viral fikirler üretmesine izin verin.',
+          '#how-it-works .step-card:nth-of-type(2) h3': 'Fikrini Yaz ve Biçimlendir',
+          '#how-it-works .step-card:nth-of-type(2) p': 'Platforma (Reels, TikTok, YouTube, X, LinkedIn) özel yazım tonunu ve formülünü seçin. Yapay zeka, kitleyi ilk 3 saniyede durduracak kazanan kancalar ve senaryoyu anında hazırlasın.',
+          '#how-it-works .step-card:nth-of-type(3) h3': 'Paylaş veya Kaydet',
+          '#how-it-works .step-card:nth-of-type(3) p': 'Yapay zekanın stüdyo kalitesinde hazırladığı içeriği kopyalayın, teleprompter eşliğinde pürüzsüzce kaydedin veya otomatik slaytlar halinde indirip hemen paylaşın.',
+          '#showcase h2': 'Hepsi Bir Arada İçerik Stüdyosu',
+          '#showcase p': 'Desivo, fikir bulmaktan senaryo yazmaya, A/B testlerinden akıllı teleprompter kaydına kadar tüm süreci tek bir yerde birleştirir.',
+          '.showcase-card:nth-of-type(1) .showcase-badge': 'Fikirden Senaryoya',
+          '.showcase-card:nth-of-type(1) h3': 'Sosyal Medya Seçici & Üretici',
+          '.showcase-card:nth-of-type(1) p': 'Aklınızdaki fikri girin, hedef platformu (Reels, TikTok, YouTube Shorts, LinkedIn, X Thread) seçin. Yapay zeka konseptinize özel profesyonel viral senaryoyu saniyeler içinde hazırlasın.',
+          '.showcase-card:nth-of-type(2) .showcase-badge': 'Her Gün Yeni İlham',
+          '.showcase-card:nth-of-type(2) h3': 'Günün İçerik Fikri & Analiz',
+          '.showcase-card:nth-of-type(2) p': 'Sosyal medyadaki popüler akımlara uygun, izleyicinin dikkatini çekecek günlük fikirler alın. Yapay zeka dehasının video fikrinize verdiği potansiyel viral skorları real-time takip edin.',
+          '.showcase-card:nth-of-type(3) .showcase-badge': 'Komple Stüdyo',
+          '.showcase-card:nth-of-type(3) h3': 'Güçlü Yapay Zeka Araçları',
+          '.showcase-card:nth-of-type(3) p': 'AI Creator Assistant, İçerik Dönüştürücü, Analiz Laboratuvarı, Thumbnail Studio, Slide Engine ve Teleprompter gibi gelişmiş araçlarla tüm içerik üretim sürecinizi tek bir merkezden yönetin.',
+          '.showcase-card:nth-of-type(4) .showcase-badge': 'Altyazı Tasarımcısı',
+          '.showcase-card:nth-of-type(4) h3': 'Otomatik Viral Altyazılar',
+          '.showcase-card:nth-of-type(4) p': 'Sosyal medyadaki popüler altyazı şablonlarını ve animasyonlu kelime vurgularını simüle edin. Anahtar kelimeleri neon renklerle ön plana çıkararak izlenme sürelerini (retention) zirveye taşıyın.',
+          '.caption-top-ui span:nth-of-type(1)': '🔴 Canlı Önizleme',
+          '.style-selector-title': 'Altyazı Stili Seç',
+          '#caption-preview-text': 'Sosyal medyada <span class="highlight">viral olmanın</span> sırrı ilk <span class="highlight">3 saniyede</span> gizlidir!',
+          '.testimonials-section .badge': '<span class="badge-dot"></span> Sosyal Kanıt',
+          '#testimonials h2': 'Desivo ile Büyüyen Kreatörler',
+          '#testimonials p': 'Sosyal medyada içerik üretim biçimini tamamen Desivo ile değiştiren bazı içerik üreticilerinin yorumları.',
+          '.testimonial-card:nth-of-type(1) h4': 'Deniz Kaya',
+          '.testimonial-card:nth-of-type(1) .testimonial-quote': '"Reels için fikir bulmak ölüm gibiydi. Her gün saatlerce ne çeksem diye düşünüyordum. Desivo’yu indirdiğimden beri sadece konuyu yazıyorum, 5 saniyede senaryo önüme geliyor. Özellikle kanca (hook) önerileri sayesinde videolarımın ilk 3 saniye elde tutma oranı %45 arttı. Harika bir iş."',
+          '.testimonial-card:nth-of-type(2) h4': 'Murat Yılmaz',
+          '.testimonial-card:nth-of-type(2) .testimonial-quote': '"Finans videolarında izleyiciyi tutmak çok zordur, sıkılıp geçerler. Desivo\'nun A/B test aracını kullanarak kancaları denemeye başladım. En son paylaştığım video 1.2 milyon izlendi ve sadece o videodan 8 bin yeni takipçi geldi. Teleprompter özelliği de ezber yapma derdini tamamen bitirdi."',
+          '.testimonial-card:nth-of-type(3) h4': 'Selin Demir',
+          '.testimonial-card:nth-of-type(3) .testimonial-quote': '"Slide Engine (Slayt Tasarlayıcı) modülü LinkedIn karusellerim için kurtarıcı oldu. Eskiden Canva’da saatlerimi harcadığım tasarımları şimdi Desivo’da hazır şablonlarla 2 dakikada PDF olarak indiriyorum. Ajans paketi sayesinde müşterilerimin marka kitlerini de tek panelden yönetebiliyorum."',
+          '.testimonial-card:nth-of-type(4) h4': 'Can Polat',
+          '.testimonial-card:nth-of-type(4) .testimonial-quote': '"Eğitim içerikleri üretiyorum ve her videoda onlarca teknik detayı akıcı bir şekilde anlatmam gerekiyor. Desivo\'nun Teleprompter özelliği sayesinde artık ezber yapmakla vakit kaybetmiyorum. Kameraya bakarak sanki doğaçlama anlatıyormuş gibi pürüzsüz kayıt alabiliyorum. Üretim hızım üç katına çıktı diyebilirim."',
+          '.testimonial-card:nth-of-type(5) h4': 'Elif Aslan',
+          '.testimonial-card:nth-of-type(5) .testimonial-quote': '"TikTok’ta algoritmayı çözmek zor ama Desivo’nun Trend Avcısı aracı sayesinde o gün hangi konuların yükseleceğini önceden tahmin edebiliyorum. Trende uygun ürettiğim son 3 videonun ikisi keşfete düştü. Benim gibi bireysel içerik üreten herkesin telefonunda mutlaka olması gereken bir uygulama."',
+          '.testimonial-card:nth-of-type(6) h4': 'Hakan Demirci',
+          '.testimonial-card:nth-of-type(6) .testimonial-quote': '"Farklı platformlara içerik üretmek tam bir işkenceydi. Bir Reels çekiyordum, sonra onu X thread\'ine dönüştürmek, LinkedIn\'e göre yazmak saatlerimi alıyordu. \'Tek Fikir, Tüm Mecralar\' modülü sayesinde tek bir konseptten 4 platform için de hazır çıktı alıyorum. İnanılmaz zaman kazandırıyor."',
+          '#pricing h2': 'Paket Seçenekleri',
+          '#pricing p': "Desivo'nun gücünü bütçenize en uygun paketle açın. İhtiyacınıza göre dilediğiniz an yükseltin veya iptal edin.",
+          '#plan-free h3': 'Ücretsiz Plan',
+          '#plan-free .plan-price': '0 TL',
+          '#plan-free .plan-limit': '3 video / ay',
+          '#plan-free .plan-features li:nth-of-type(1)': 'Sınırsız Premium Teleprompter Studio',
+          '#plan-free .plan-features li:nth-of-type(2)': 'Reel Cover Studio 9:16 safe-zone simülatörü',
+          '#plan-free .plan-features li:nth-of-type(3)': 'Sınırsız içerik takvimi ve planlama',
+          '#plan-free .plan-features li:nth-of-type(4)': '1 adet Marka Kiti (Brand Kit) Profili',
+          '#plan-free .plan-features li:nth-of-type(5)': 'Ayda 3 adet AI Video metni ve kanca üretimi',
+          '#plan-free .plan-btn': 'Hemen Başla',
+          '#plan-creator h3': 'Creator Pro',
+          '#plan-creator .plan-price': '349 TL <span>/ ay</span>',
+          '#plan-creator .plan-limit': '100 video / ay',
+          '#plan-creator .plan-features li:nth-of-type(1)': 'Ayda 100 adet AI Video Metni & Kanca Swapper',
+          '#plan-creator .plan-features li:nth-of-type(2)': 'Ayda 25 adet AI Thumbnail görsel üretimi',
+          '#plan-creator .plan-features li:nth-of-type(3)': '1 adet Premium Marka Kiti Profili',
+          '#plan-creator .plan-features li:nth-of-type(4)': 'Tüm AI Yardımcı sekmeleri (Analiz, Mentor, vb.)',
+          '#plan-creator .plan-features li:nth-of-type(5)': 'Bulut yedekleme ve sıfır reklam deneyimi',
+          '#plan-creator .plan-btn': 'Yükselt & Uçuşa Geç',
+          '#plan-creator .popular-badge': 'En Popüler',
+          '#plan-agency h3': 'Ajans Paketi',
+          '#plan-agency .plan-price': '1699 TL <span>/ ay</span>',
+          '#plan-agency .plan-limit': '1000 video / ay',
+          '#plan-agency .plan-features li:nth-of-type(1)': 'Ayda 1000 adet AI Video Metni & Kanca Swapper',
+          '#plan-agency .plan-features li:nth-of-type(2)': 'Ayda 150 adet AI Thumbnail görsel üretimi',
+          '#plan-agency .plan-features li:nth-of-type(3)': '5 adede kadar Marka Kiti (Ajans/Müşteri) Profili',
+          '#plan-agency .plan-features li:nth-of-type(4)': 'Ekip işbirliği ve çoklu hesap yönetimi',
+          '#plan-agency .plan-features li:nth-of-type(5)': '7/24 VIP Destek hattı',
+          '#plan-agency .plan-btn': 'Ajans Gücünü Başlat',
+          '.referral-badge': 'Davet Et & Kazan',
+          '#referral-reward h3': 'Arkadaşlarını Davet Et, Birlikte Kazan!',
+          '#referral-reward p': 'Desivo mobil uygulamasındaki benzersiz referans kodunuzu arkadaşlarınızla paylaşın. Arkadaşınız kaydolduğunda hem o 1 ekstra video üretme kredisi kazansın hem de sizin hesabınıza anında +1 bonus kredi tanımlansın!',
+          '.referral-cta': 'Kodunu Al ve Paylaş',
+          '#download h2': 'Sosyal Medya Oyununu Değiştirin.',
+          '#download p': "Desivo'yu şimdi akıllı telefonunuza indirin ve yapay zeka destekli üretimin lüks ve hızını hissetmeye başlayın.",
+          '#contact h2': 'Bizimle İletişime Geçin',
+          '#contact p': 'Sorularınız, görüşleriniz veya iş ortaklığı teklifleriniz için formu doldurabilir veya doğrudan <a href="mailto:info@desivo.app" style="color: #EC4899; font-weight: 700; text-decoration: none;">info@desivo.app</a> adresine mail atabilirsiniz.',
+          '#contact label[for="contact-name"]': 'Adınız Soyadınız',
+          '#contact label[for="contact-email"]': 'E-Posta Adresiniz',
+          '#contact label[for="contact-message"]': 'Mesajınız',
+          '#contact input[id="contact-name"]': 'placeholder:Örn: Hasan Kökçe',
+          '#contact input[id="contact-email"]': 'placeholder:hasan@example.com',
+          '#contact textarea[id="contact-message"]': 'placeholder:Mesajınızı buraya yazın...',
+          '#contact button[type="submit"]': 'Mesajı Gönder 🚀',
+          '#form-success': 'Mesajınız başarıyla iletildi! En kısa sürede dönüş sağlayacağız.',
+          '#link-privacy': 'Gizlilik Sözleşmesi',
+          '#link-terms': 'Kullanım Koşulları',
+          '#link-footer-contact': 'İletişim',
+          '#link-support': 'Destek',
+          '#footer-copy': '&copy; 2026 Desivo. Tüm Hakları Saklıdır.',
+          '#footer-tagline': 'Designed with luxury aesthetic for Creators.',
+          '.scroll-indicator-text': 'Aşağı Kaydır',
+          '#store-apple-hero .store-text span:nth-child(1)': 'App Store\'dan',
+          '#store-apple-hero .store-text span:nth-child(2)': 'İndirin',
+          '#store-google-hero .store-text span:nth-child(1)': 'Google Play',
+          '#store-google-hero .store-text span:nth-child(2)': 'Çok Yakında',
+          '#store-apple-cta .store-text span:nth-child(1)': 'App Store\'dan',
+          '#store-apple-cta .store-text span:nth-child(2)': 'İndirin',
+          '#store-google-cta .store-text span:nth-child(1)': 'Google Play',
+          '#store-google-cta .store-text span:nth-child(2)': 'Çok Yakında',
+          '#hook-input-a': 'placeholder:Örn: Bu videoda sosyal medyada nasıl hızlı büyüyeceğinizi anlatıyorum...',
+          '#hook-input-b': 'placeholder:Örn: Sosyal medyada 100k takipçiye ulaşmanın 3 gizli sırrı...'
+        },
+        en: {
+          '#link-features': 'Features',
+          '#link-how-it-works': 'How It Works',
+          '#link-pricing': 'Pricing',
+          '#link-contact': 'Contact',
+          '#link-download': 'Download Now',
+          '#hero-badge-text': 'AI-Powered Creator Studio',
+          '#hero-title': 'The Shortest Path to <span>Going Viral</span>.',
+          '#hero-desc': 'Desivo turns a single idea into high-converting Reels, TikTok, and YouTube scripts in minutes. Take your social media growth to a futuristic level with neural hook analysis, automatic teleprompter guides, and CTR optimized tools.',
+          '#features-title': 'Your Social Media Powerhouse',
+          '#features-desc': 'Desivo includes 11 independent AI modules to speed up and professionalize every stage of your content production.',
+          '#feat-script h3': 'Idea to Video',
+          '#feat-script p': 'AI structures video scripts into instant scene plans using proven formulas like PAS, AIDA, and Storytelling.',
+          '#feat-abtest h3': 'Hook A/B Testing Lab',
+          '#feat-abtest p': 'Pit two hooks against each other using neuromarketing scores to find the winner that stops the scroll in the first 3 seconds.',
+          '#feat-slide h3': 'Slide Design Engine',
+          '#feat-slide p': 'Design and download futuristic PDF swipeable (Carousel) slides matching your brand kit logo and colors for Instagram & LinkedIn.',
+          '#feat-repurpose h3': 'One Idea, All Mediums',
+          '#feat-repurpose p': 'Generate video scripts, sequential X threads, and professional LinkedIn posts from a single topic input simultaneously.',
+          '#feat-prompter h3': 'Smart Teleprompter',
+          '#feat-prompter p': 'Speak without memorization in front of the camera. Generate flawless recordings with a teleprompter that scrolls dynamically matching your voice speed.',
+          '#feat-subtitle h3': 'Viral Subtitle Designer',
+          '#feat-subtitle p': 'Simulate trending social media caption templates and increase watch times by highlighting critical keywords with neon accents.',
+          '#feat-audit h3': 'AI Viewer Simulator',
+          '#feat-audit p': 'Simulate video watch rate graphs via AI, discover exact drop-off points, and get actionable visual correction tips instantly.',
+          '#feat-brands h3': 'Multi-Brand Niche Profiles',
+          '#feat-brands p': 'Manage target audience DNA, custom scripts, and brand voices of 5 different client profiles separately via BrandOS.',
+          '#feat-trend h3': 'Trend Hunter AI Feed',
+          '#feat-trend p': 'Track hot media hooks and viral audio/video content topics in real-time to always post what gets maximum reach.',
+          '#feat-canvas h3': 'Canvas Design Editor',
+          '#feat-canvas p': 'Customize AI generated video covers and carousel cards by dragging and dropping your logos, stickers, and texts on the design board.',
+          '#feat-streak h3': 'Creator Streak Tracker',
+          '#feat-streak p': 'Keep your daily creation streak active with our gamified tracker, establishing consistent posting habits.',
+          '#ecosystem-title': 'From Idea to Analysis: The Desivo Ecosystem',
+          '#ecosystem-desc': 'The journey of your ideas turning into viral content. All our AI modules work integrated to form a complete content studio.',
+          '.flow-step[data-step="1"] .step-tag': '01. CHAPTER',
+          '.flow-step[data-step="1"] h3': 'Idea of the Day (Discovery)',
+          '.flow-step[data-step="1"] p': 'Capture the most trending content idea of the day and track your video success curves.',
+          '.flow-step[data-step="2"] .step-tag': '02. CHAPTER',
+          '.flow-step[data-step="2"] h3': 'Content Creator (Production)',
+          '.flow-step[data-step="2"] p': 'Enter your idea and instantly generate your video scripts by selecting platform and content concepts.',
+          '.flow-step[data-step="3"] .step-tag': '03. CHAPTER',
+          '.flow-step[data-step="3"] h3': 'Niche Selection (Targeting)',
+          '.flow-step[data-step="3"] p': 'Position your brand among 20+ categories from digital marketing to dropshipping.',
+          '.flow-step[data-step="4"] .step-tag': '04. CHAPTER',
+          '.flow-step[data-step="4"] h3': 'My Projects Panel (Management)',
+          '.flow-step[data-step="4"] p': 'Store the projects you produce for Reels, LinkedIn, and all other channels in a single panel.',
+          '.flow-step[data-step="5"] .step-tag': '05. CHAPTER',
+          '.flow-step[data-step="5"] h3': 'Advanced AI Modules (Toolkit)',
+          '.flow-step[data-step="5"] p': 'Launch Trend Hunter, Media Kit, Hook Pool, and Performance Auditor instantly.',
+          '#hook-tester h2': 'Hook A/B Testing Lab',
+          '#hook-tester p': 'Save the first 3 seconds of your videos. Pit two different video intros (hooks) against each other with AI and see the winner instantly.',
+          '.scan-text': 'Scanning Neuromarketing Algorithms...',
+          '.hook-label.a': '<span>🔵</span> Hook A Option (A/B Test)',
+          '.hook-label.b': '<span>🔴</span> Hook B Option (A/B Test)',
+          '.hook-input-group:nth-of-type(1) .template-btn:nth-of-type(1)': 'Casual Narrative',
+          '.hook-input-group:nth-of-type(1) .template-btn:nth-of-type(2)': 'Question Intro',
+          '.hook-input-group:nth-of-type(2) .template-btn:nth-of-type(1)': 'Curiosity Trigger',
+          '.hook-input-group:nth-of-type(2) .template-btn:nth-of-type(2)': 'Pain Point Intro',
+          '#run-test-btn': '<span>🚀</span> Pit Hooks',
+          '#winner-tag': '🏆 WINNER: HOOK A',
+          '#winner-desc': 'This hook has shown significant superiority over the other option in curiosity and stopping the scroll in the first 3 seconds.',
+          '.metric-bar-group:nth-of-type(1) .metric-bar-title': 'Attention Power',
+          '.metric-bar-group:nth-of-type(2) .metric-bar-title': 'Curiosity Factor',
+          '.metric-bar-group:nth-of-type(3) .metric-bar-title': 'Memorability Rate',
+          '#why-desivo h2': "Don't Just Produce Content, Produce Smarter",
+          '#why-desivo p': 'Desivo analyzes social media algorithms and viewer psychology, turning your content creation process into a growth-oriented data hub.',
+          '#why-desivo .metric-card:nth-of-type(1) h4': 'Faster Production',
+          '#why-desivo .metric-card:nth-of-type(1) p': 'Thanks to the AI assistant and platform templates, complete script writing and slide design tasks in seconds instead of hours.',
+          '#why-desivo .metric-card:nth-of-type(2) h4': 'Audience Retention Rate',
+          '#why-desivo .metric-card:nth-of-type(2) p': 'Optimize the first 3 seconds of your videos with the Hook A/B Test Lab and viral hook pool to lock viewers on the screen.',
+          '#why-desivo .metric-card:nth-of-type(3) h4': 'Brand Consistent Voice',
+          '#why-desivo .metric-card:nth-of-type(3) p': "Thanks to the Multi-Brand OS kit, AI always prepares your content loyal to your brand's unique tone of voice and audience DNA.",
+          '#why-desivo .metric-card:nth-of-type(4) h4': 'No Memorization or Camera Stress',
+          '#why-desivo .metric-card:nth-of-type(4) p': 'Take smooth recordings in one go without stuttering in front of the camera, thanks to the smart teleprompter that scrolls automatically according to your speaking speed.',
+          '#faq h2': 'Frequently Asked Questions',
+          '#faq p': 'Find detailed answers below to all the questions you might have about Desivo.',
+          '.faq-item:nth-of-type(1) summary': 'When do my content creation limits renew?',
+          '.faq-item:nth-of-type(1) .faq-answer': 'Your package limits and AI credit entitlements reset automatically exactly 1 month after purchase (on your billing renewal date). Unused credits do not roll over to the next month.',
+          '.faq-item:nth-of-type(2) summary': 'Does the AI Teleprompter studio work without internet?',
+          '.faq-item:nth-of-type(2) .faq-answer': "Yes! Our teleprompter studio and camera recording module completely run on your device's local hardware. Even without internet, the teleprompter continues with your script and saves recordings to your gallery.",
+          '.faq-item:nth-of-type(3) summary': 'Who owns the copyright of scripts and cover designs?',
+          '.faq-item:nth-of-type(3) .faq-answer': 'All scripts, video concepts, and cover graphics generated by our AI belong 100% to you (the user). No royalties or attribution are required, and you can monetize them on any social media platform.',
+          '.faq-item:nth-of-type(4) summary': 'What is a Brand Kit and how does it work?',
+          '.faq-item:nth-of-type(4) .faq-answer': "The Brand Kit is designed to train the AI on your brand's unique style. Here you save your brand name, target audience, tone of voice (e.g., casual, professional, humorous), and key parameters. The AI blends these details to write custom scripts.",
+          '.faq-item:nth-of-type(5) summary': 'What is a Media Kit and what does "Verified Account" mean?',
+          '.faq-item:nth-of-type(5) .faq-answer': 'A Media Kit is your digital CV when collaborating with brands and agencies. Connecting your social accounts via our secure simulator gains you the green "Verified" badge. This badge shows your stats are real, building trust in your PDF output.',
+          '.faq-item:nth-of-type(6) summary': 'How can I increase the quality of AI Thumbnails?',
+          '.faq-item:nth-of-type(6) .faq-answer': 'The more detailed your prompt topic, the richer the scene drawn by the AI. Specifying dominant color tones, lighting style (e.g. cinematic, studio lighting), and key objects will yield higher CTR results.',
+          '.faq-item:nth-of-type(7) summary': 'How can I cancel my subscription?',
+          '.faq-item:nth-of-type(7) .faq-answer': 'You can cancel your subscription at any time without giving reasons. Cancellation is processed via Apple ID under Settings > Apple ID (top name block) > Subscriptions with a single tap.',
+          '.faq-item:nth-of-type(8) summary': 'How do I restore my purchase on a different device?',
+          '.faq-item:nth-of-type(8) .faq-answer': 'Your subscription is tied to your Apple ID. You can instantly restore your package on any iPhone or iPad logged into the same Apple ID by clicking "Restore Purchases" in the Subscription screen.',
+          '#how-it-works h2': 'How It Works',
+          '#how-it-works p': 'Carry your social media studio in your pocket with Desivo. Here is the process of turning your ideas into viral content:',
+          '#how-it-works .step-card:nth-of-type(1) h3': 'Generate Ideas',
+          '#how-it-works .step-card:nth-of-type(1) p': 'Open the app and enter your content topic, or let AI generate trending, high-engagement viral ideas for you.',
+          '#how-it-works .step-card:nth-of-type(2) h3': 'Format & Script',
+          '#how-it-works .step-card:nth-of-type(2) p': 'Choose the writing tone and formula specific to the platform (Reels, TikTok, YouTube, X, LinkedIn). AI will prepare the winning hooks to stop the scroll in 3 seconds.',
+          '#how-it-works .step-card:nth-of-type(3) h3': 'Share or Record',
+          '#how-it-works .step-card:nth-of-type(3) p': 'Copy the studio-quality content prepared by AI, record it smoothly using the teleprompter, or download it as automated slides.',
+          '#showcase h2': 'All-in-One Content Studio',
+          '#showcase p': 'Desivo combines the entire process from finding ideas to writing scripts, from A/B tests to smart teleprompter recording in one place.',
+          '.showcase-card:nth-of-type(1) .showcase-badge': 'From Idea to Script',
+          '.showcase-card:nth-of-type(1) h3': 'Multi-Platform Generator',
+          '.showcase-card:nth-of-type(1) p': 'Enter your raw idea, select the target platform (Reels, TikTok, YouTube Shorts, LinkedIn, X Thread). AI will format the script in seconds.',
+          '.showcase-card:nth-of-type(2) .showcase-badge': 'Daily Inspiration',
+          '.showcase-card:nth-of-type(2) h3': 'Daily Trends & Score Analytics',
+          '.showcase-card:nth-of-type(2) p': 'Get viral content ideas matching trending topics. Monitor potential viral score metrics of your video ideas calculated in real-time.',
+          '.showcase-card:nth-of-type(3) .showcase-badge': 'Complete Studio',
+          '.showcase-card:nth-of-type(3) h3': 'Advanced AI Creator Suite',
+          '.showcase-card:nth-of-type(3) p': 'Manage your entire content calendar using advanced features like AI Creator Assistant, Content Transformer, Audit Labs, Thumbnail Studio, Slide Engine, and Teleprompter.',
+          '.showcase-card:nth-of-type(4) .showcase-badge': 'Subtitle Studio',
+          '.showcase-card:nth-of-type(4) h3': 'Automated Viral Captions',
+          '.showcase-card:nth-of-type(4) p': 'Simulate trending subtitle templates and animated styles. Highlight critical keywords with neon colors to maximize watch time.',
+          '.caption-top-ui span:nth-of-type(1)': '🔴 Live Preview',
+          '.style-selector-title': 'Choose Subtitle Style',
+          '#caption-preview-text': 'The secret to <span class="highlight">going viral</span> is hidden in the first <span class="highlight">3 seconds</span>!',
+          '.testimonials-section .badge': '<span class="badge-dot"></span> Social Proof',
+          '#testimonials h2': 'Creators Growing with Desivo',
+          '#testimonials p': 'Feedback from creators who have completely changed their social media workflow with Desivo.',
+          '.testimonial-card:nth-of-type(1) h4': 'Deniz Kaya',
+          '.testimonial-card:nth-of-type(1) .testimonial-quote': '"Finding Reels ideas felt like absolute torture. I spent hours thinking about what to shoot. Since downloading Desivo, I just write the topic and the script is ready in 5 seconds. Thanks to hook suggestions, my 3-second retention rate increased by 45%."',
+          '.testimonial-card:nth-of-type(2) h4': 'Murat Yılmaz',
+          '.testimonial-card:nth-of-type(2) .testimonial-quote': '"Holding viewers in financial niche videos is extremely hard. I started running tests using Desivo\'s A/B Hook Lab. My latest video hit 1.2M views and brought in 8k followers. The teleprompter completely saved me from camera block."',
+          '.testimonial-card:nth-of-type(3) h4': 'Selin Demir',
+          '.testimonial-card:nth-of-type(3) .testimonial-quote': '"The Slide Engine module became a lifesaver for my LinkedIn carousels. I can prepare PDF slides with prebuilt templates in 2 minutes instead of spending hours in Canva. Agency plan allows me to manage client kits easily."',
+          '.testimonial-card:nth-of-type(4) h4': 'Can Polat',
+          '.testimonial-card:nth-of-type(4) .testimonial-quote': '"I produce educational content and need to explain technical details clearly. Thanks to Desivo\'s Teleprompter, I no longer waste time memorizing. I get smooth recordings while looking directly at the camera."',
+          '.testimonial-card:nth-of-type(5) h4': 'Elif Aslan',
+          '.testimonial-card:nth-of-type(5) .testimonial-quote': '"TikTok algorithm is tricky, but thanks to the Trend Hunter tool, I can predict what topics will rise. Out of my last 3 videos, two went viral. Every solo creator should definitely have this app on their phone."',
+          '.testimonial-card:nth-of-type(6) h4': 'Hakan Demirci',
+          '.testimonial-card:nth-of-type(6) .testimonial-quote': '"Formatting scripts for different platforms was a huge chore. Generating Reels, converting it to X threads, or writing for LinkedIn took hours. The One Idea, All Mediums module handles all of it instantly."',
+          '#pricing h2': 'Pricing Plans',
+          '#pricing p': 'Unlock the power of Desivo with the best package for your budget. Upgrade or cancel anytime based on your needs.',
+          '#plan-free h3': 'Free Plan',
+          '#plan-free .plan-price': '$0',
+          '#plan-free .plan-limit': '3 videos / mo',
+          '#plan-free .plan-features li:nth-of-type(1)': 'Unlimited Premium Teleprompter Studio',
+          '#plan-free .plan-features li:nth-of-type(2)': 'Reel Cover Studio 9:16 safe-zone simulator',
+          '#plan-free .plan-features li:nth-of-type(3)': 'Unlimited content calendar & planning',
+          '#plan-free .plan-features li:nth-of-type(4)': '1 Brand Kit Profile',
+          '#plan-free .plan-features li:nth-of-type(5)': '3 AI Video scripts & hook generation per month',
+          '#plan-free .plan-btn': 'Get Started',
+          '#plan-creator h3': 'Creator Pro',
+          '#plan-creator .plan-price': '$11.99 <span>/ mo</span>',
+          '#plan-creator .plan-limit': '100 videos / mo',
+          '#plan-creator .plan-features li:nth-of-type(1)': '100 AI Video scripts & Hook Swappers per month',
+          '#plan-creator .plan-features li:nth-of-type(2)': '25 AI Thumbnail image generations per month',
+          '#plan-creator .plan-features li:nth-of-type(3)': '1 Premium Brand Kit Profile',
+          '#plan-creator .plan-features li:nth-of-type(4)': 'All AI Assistant tabs (Analysis, Mentor, etc.)',
+          '#plan-creator .plan-features li:nth-of-type(5)': 'Cloud backups & zero ad experience',
+          '#plan-creator .plan-btn': 'Upgrade Pro',
+          '#plan-creator .popular-badge': 'Most Popular',
+          '#plan-agency h3': 'Agency Plan',
+          '#plan-agency .plan-price': '$49.99 <span>/ mo</span>',
+          '#plan-agency .plan-limit': '1000 videos / mo',
+          '#plan-agency .plan-features li:nth-of-type(1)': '1000 AI Video scripts & Hook Swappers per month',
+          '#plan-agency .plan-features li:nth-of-type(2)': '150 AI Thumbnail image generations per month',
+          '#plan-agency .plan-features li:nth-of-type(3)': 'Up to 5 Brand Kit (Agency/Client) Profiles',
+          '#plan-agency .plan-features li:nth-of-type(4)': 'Team collaboration & multi-account management',
+          '#plan-agency .plan-features li:nth-of-type(5)': '24/7 VIP Support line',
+          '#plan-agency .plan-btn': 'Start Agency',
+          '.referral-badge': 'Invite & Earn',
+          '#referral-reward h3': 'Invite Friends, Earn Together!',
+          '#referral-reward p': 'Share your unique referral code in Desivo app. When your friend signs up, they get 1 bonus credit and your account gets +1 video credit instantly!',
+          '.referral-cta': 'Get Code & Share',
+          '#download h2': 'Change the Social Media Game.',
+          '#download p': 'Download Desivo to your smartphone now and start experiencing the luxury and speed of AI-powered creation.',
+          '#contact h2': 'Contact Us',
+          '#contact p': 'For your questions, feedback, or partnership proposals, you can fill out the form or directly email us at <a href="mailto:info@desivo.app" style="color: #EC4899; font-weight: 700; text-decoration: none;">info@desivo.app</a>.',
+          '#contact label[for="contact-name"]': 'Your Full Name',
+          '#contact label[for="contact-email"]': 'Your Email Address',
+          '#contact label[for="contact-message"]': 'Your Message',
+          '#contact input[id="contact-name"]': 'placeholder:E.g. Hasan Kokce',
+          '#contact input[id="contact-email"]': 'placeholder:hasan@example.com',
+          '#contact textarea[id="contact-message"]': 'placeholder:Type your message here...',
+          '#contact button[type="submit"]': 'Send Message 🚀',
+          '#form-success': 'Message sent successfully! We will get back to you shortly.',
+          '#link-privacy': 'Privacy Policy',
+          '#link-terms': 'Terms of Use',
+          '#link-footer-contact': 'Contact',
+          '#link-support': 'Support',
+          '#footer-copy': '&copy; 2026 Desivo. All Rights Reserved.',
+          '#footer-tagline': 'Designed with luxury aesthetic for Creators.',
+          '.scroll-indicator-text': 'Scroll Down',
+          '#store-apple-hero .store-text span:nth-child(1)': 'Download on the',
+          '#store-apple-hero .store-text span:nth-child(2)': 'App Store',
+          '#store-google-hero .store-text span:nth-child(1)': 'Google Play',
+          '#store-google-hero .store-text span:nth-child(2)': 'Coming Soon',
+          '#store-apple-cta .store-text span:nth-child(1)': 'Download on the',
+          '#store-apple-cta .store-text span:nth-child(2)': 'App Store',
+          '#store-google-cta .store-text span:nth-child(1)': 'Google Play',
+          '#store-google-cta .store-text span:nth-child(2)': 'Coming Soon',
+          '#hook-input-a': 'placeholder:E.g. In this video, I will show you how to grow fast on social media...',
+          '#hook-input-b': 'placeholder:E.g. 3 secret keys to reaching 100k followers on social media...'
+        },
+        es: {
+          '#link-features': 'Características',
+          '#link-how-it-works': 'Cómo Funciona',
+          '#link-pricing': 'Planes',
+          '#link-contact': 'Contacto',
+          '#link-download': 'Descargar',
+          '#hero-badge-text': 'Estudio de Creación Asistido por IA',
+          '#hero-title': 'El Camino Más Rápido para <span>Hacerse Viral</span>.',
+          '#hero-desc': 'Desivo convierte una sola idea en guiones de alta conversión para Reels, TikTok y YouTube en minutos. Lleva el crecimiento de tus redes sociales a un nivel futurista con análisis de ganchos neurales, teleprompter inteligente y herramientas optimizadas para CTR.',
+          '#features-title': 'Tu Potencia en Redes Sociales',
+          '#features-desc': 'Desivo incluye 11 módulos de IA independientes para activar cada etapa de tu producción de contenido.',
+          '#feat-script h3': 'De Idea a Video',
+          '#feat-script p': 'La IA estructura guiones de video en planes de escenas instantáneos utilizando fórmulas comprobadas como PAS, AIDA y Storytelling.',
+          '#feat-abtest h3': 'Laboratorio de Ganchos A/B',
+          '#feat-abtest p': 'Enfríen dos ganchos usando puntajes de neuromarketing para encontrar el ganador que detenga el scroll en los primeros 3 segundos.',
+          '#feat-slide h3': 'Diseño de Diapositivas',
+          '#feat-slide p': 'Diseña y descarga diapositivas PDF deslizables (Carrusel) futuristas que coincidan con el logotipo y colores de tu marca para Instagram y LinkedIn.',
+          '#feat-repurpose h3': 'Una Idea, Todo Perfil',
+          '#feat-repurpose p': 'Genera guiones de video, hilos de X secuenciales y publicaciones profesionales de LinkedIn a partir de una sola idea simultáneamente.',
+          '#feat-prompter h3': 'Teleprompter Inteligente',
+          '#feat-prompter p': 'Habla sin memorizar frente a la cámara. Genera grabaciones perfectas con un teleprompter que se desliza dinámicamente según la velocidad de tu voz.',
+          '#feat-subtitle h3': 'Subtítulos Virales',
+          '#feat-subtitle p': 'Simule plantillas de subtítulos de redes sociales populares y aumente el tiempo de retención resaltando palabras clave con acentos de neón.',
+          '#feat-audit h3': 'Simulador de Retención IA',
+          '#feat-audit p': 'Simula gráficos de retención de video con IA, descubre puntos de caída exactos y obtén consejos de corrección visual al instante.',
+          '#feat-brands h3': 'Múltiples Perfiles de Marca',
+          '#feat-brands p': 'Administra el ADN de la audiencia, guiones personalizados y voces de marca de 5 perfiles de clientes diferentes por separado a través de BrandOS.',
+          '#feat-trend h3': 'Cazador de Tendencias IA',
+          '#feat-trend p': 'Rastrea ganchos de medios calientes y temas de contenido viral en tiempo real para publicar siempre lo que tiene el mayor alcance.',
+          '#feat-canvas h3': 'Editor de Diseño de Lienzo',
+          '#feat-canvas p': 'Personaliza portadas de video y tarjetas de carrusel generadas por IA arrastrando y soltando tus logotipos, stickers y textos en la pizarra de diseño.',
+          '#feat-streak h3': 'Racha del Creador',
+          '#feat-streak p': 'Mantén activa tu racha diaria de creación con nuestro rastreador ludificado, estableciendo hábitos constantes de publicación.',
+          '#ecosystem-title': 'De la Idea al Análisis: El Ecosistema Desivo',
+          '#ecosystem-desc': 'El viaje de tus ideas convirtiéndose en contenido viral. Todos nuestros módulos de IA trabajan integrados para formar un estudio de contenido completo.',
+          '.flow-step[data-step="1"] .step-tag': '01. SECCIÓN',
+          '.flow-step[data-step="1"] h3': 'Idea del Día (Descubrimiento)',
+          '.flow-step[data-step="1"] p': 'Captura la idea de contenido más popular del día y sigue tus curvas de éxito de video.',
+          '.flow-step[data-step="2"] .step-tag': '02. SECCIÓN',
+          '.flow-step[data-step="2"] h3': 'Creador de Contenido (Producción)',
+          '.flow-step[data-step="2"] p': 'Ingresa tu idea y genera instantáneamente tus guiones de video seleccionando la plataforma y los conceptos de contenido.',
+          '.flow-step[data-step="3"] .step-tag': '03. SECCIÓN',
+          '.flow-step[data-step="3"] h3': 'Selección de Nicho (Segmentación)',
+          '.flow-step[data-step="3"] p': 'Posiciona tu marca entre más de 20 categorías, desde marketing digital hasta dropshipping.',
+          '.flow-step[data-step="4"] .step-tag': '04. SECCIÓN',
+          '.flow-step[data-step="4"] h3': 'Panel de Mis Proyectos (Gestión)',
+          '.flow-step[data-step="4"] p': 'Almacena los proyectos que produces para Reels, LinkedIn y todos los demás canales en un solo panel.',
+          '.flow-step[data-step="5"] .step-tag': '05. SECCIÓN',
+          '.flow-step[data-step="5"] h3': 'Módulos de IA Avanzados (Herramientas)',
+          '.flow-step[data-step="5"] p': 'Lanza Trend Hunter, Media Kit, Hook Pool y el Auditor de Rendimiento al instante.',
+          '#hook-tester h2': 'Laboratorio de Ganchos A/B',
+          '#hook-tester p': 'Salva los primeros 3 segundos de tus videos. Enfrenta dos intros (ganchos) de video diferentes con IA y mira el ganador al instante.',
+          '.scan-text': 'Escaneando algoritmos de neuromarketing...',
+          '.hook-label.a': '<span>🔵</span> Opción de Gancho A (Test A/B)',
+          '.hook-label.b': '<span>🔴</span> Opción de Gancho B (Test A/B)',
+          '.hook-input-group:nth-of-type(1) .template-btn:nth-of-type(1)': 'Narrativa Casual',
+          '.hook-input-group:nth-of-type(1) .template-btn:nth-of-type(2)': 'Introducción con Pregunta',
+          '.hook-input-group:nth-of-type(2) .template-btn:nth-of-type(1)': 'Disparador de Curiosidad',
+          '.hook-input-group:nth-of-type(2) .template-btn:nth-of-type(2)': 'Introducción de Punto de Dolor',
+          '#run-test-btn': '<span>🚀</span> Enfrentar Ganchos',
+          '#winner-tag': '🏆 GANADOR: GANCHO A',
+          '#winner-desc': 'Este gancho ha mostrado una superioridad significativa sobre la otra opción en curiosidad y en detener el scroll en los primeros 3 segundos.',
+          '.metric-bar-group:nth-of-type(1) .metric-bar-title': 'Poder de Atención',
+          '.metric-bar-group:nth-of-type(2) .metric-bar-title': 'Factor de Curiosidad',
+          '.metric-bar-group:nth-of-type(3) .metric-bar-title': 'Tasa de Recordabilidad',
+          '#why-desivo h2': 'No Solo Produzcas Contenido, Produce Más Inteligente',
+          '#why-desivo p': 'Desivo analiza los algoritmos de las redes sociales y la psicología del espectador, convirtiendo tu proceso de creación de contenido en un centro de datos orientado al crecimiento.',
+          '#why-desivo .metric-card:nth-of-type(1) h4': 'Producción Más Rápida',
+          '#why-desivo .metric-card:nth-of-type(1) p': 'Gracias al asistente de IA y las plantillas de plataforma, completa tareas de redacción de guiones y diseño de diapositivas en segundos en lugar de horas.',
+          '#why-desivo .metric-card:nth-of-type(2) h4': 'Retención de Audiencia',
+          '#why-desivo .metric-card:nth-of-type(2) p': 'Optimiza los primeros 3 segundos de tus videos con el Laboratorio de Ganchos A/B y el grupo de ganchos virales para enganchar a los espectadores.',
+          '#why-desivo .metric-card:nth-of-type(3) h4': 'Voz Coherente de Marca',
+          '#why-desivo .metric-card:nth-of-type(3) p': "Gracias al kit Multi-Brand OS, la IA siempre prepara tu contenido fiel al tono de voz único de tu marca y al ADN de tu audiencia.",
+          '#why-desivo .metric-card:nth-of-type(4) h4': 'Sin Estrés de Cámara',
+          '#why-desivo .metric-card:nth-of-type(4) p': 'Graba de forma fluida y sin titubeos frente a la cámara gracias al teleprompter inteligente que se desplaza automáticamente según tu velocidad de habla.',
+          '#faq h2': 'Preguntas Frecuentes',
+          '#faq p': 'Encuentra respuestas detalladas a continuación para todas las preguntas que puedas tener sobre Desivo.',
+          '.faq-item:nth-of-type(1) summary': '¿Cuándo se renuevan mis límites de contenido?',
+          '.faq-item:nth-of-type(1) .faq-answer': 'Tus límites de paquete y créditos de IA se restablecen automáticamente exactamente 1 mes después de la compra (en tu fecha de renovación). Los créditos no utilizados no se acumulan.',
+          '.faq-item:nth-of-type(2) summary': '¿El teleprompter funciona sin internet?',
+          '.faq-item:nth-of-type(2) .faq-answer': '¡Sí! Nuestro teleprompter y módulo de cámara funcionan localmente en el hardware de tu dispositivo. Continuará con tu guion cargado y guardará los videos en tu galería sin conexión.',
+          '.faq-item:nth-of-type(3) summary': '¿Quién posee los derechos de autor de los guiones y diseños?',
+          '.faq-item:nth-of-type(3) .faq-answer': 'Todos los guiones, estructuras y gráficos creados por la IA te pertenecen al 100%. No se requieren regalías y puedes monetizarlos libremente.',
+          '.faq-item:nth-of-type(4) summary': '¿Qué es un Brand Kit y cómo funciona?',
+          '.faq-item:nth-of-type(4) .faq-answer': 'El Brand Kit entrena a la IA en tu estilo único. Aquí guardas el nombre de la marca, logotipo, público objetivo y tono (ej. casual, serio). La IA mezcla estos datos para personalizar los guiones.',
+          '.faq-item:nth-of-type(5) summary': '¿Qué es un Media Kit y qué significa "Cuenta Verificada"?',
+          '.faq-item:nth-of-type(5) .faq-answer': 'Un Media Kit es tu CV digital para marcas. Conectar tus cuentas a través de nuestro simulador seguro te otorga la insignia verde de "Verificado", demostrando que tus estadísticas son reales.',
+          '.faq-item:nth-of-type(6) summary': '¿Cómo mejoro la calidad de mis AI Thumbnails?',
+          '.faq-item:nth-of-type(6) .faq-answer': 'Cuanto más detallado sea tu prompt, mejor será la imagen. Especificar colores dominantes, iluminación (ej. cinematográfica) y objetos clave generará mejores tasas de clics (CTR).',
+          '.faq-item:nth-of-type(7) summary': '¿Cómo puedo cancelar mi suscripción?',
+          '.faq-item:nth-of-type(7) .faq-answer': 'Puedes cancelar en cualquier momento desde tu dispositivo Apple en Ajustes > Apple ID > Suscripciones con un solo toque.',
+          '.faq-item:nth-of-type(8) summary': '¿Cómo restauro mi suscripción en otro dispositivo?',
+          '.faq-item:nth-of-type(8) .faq-answer': 'Tu suscripción está ligada a tu Apple ID. Ve a la pantalla de paquetes en cualquier dispositivo con la misma cuenta y pulsa "Restaurar Compras" para activarla.',
+          '#how-it-works h2': 'Cómo Funciona',
+          '#how-it-works p': 'Lleva tu estudio de redes sociales en el bolsillo con Desivo. Aquí está el proceso de convertir tus ideas en contenido viral:',
+          '#how-it-works .step-card:nth-of-type(1) h3': 'Generar Ideas',
+          '#how-it-works .step-card:nth-of-type(1) p': 'Abre la aplicación e ingresa tu tema de contenido, o deja que la IA genere ideas virales de alto compromiso para ti.',
+          '#how-it-works .step-card:nth-of-type(2) h3': 'Escribir y Formatear',
+          '#how-it-works .step-card:nth-of-type(2) p': 'Elige el tono de escritura y la fórmula específicos para la plataforma (Reels, TikTok, YouTube, X, LinkedIn). La IA preparará los ganchos ganadores al instante.',
+          '#how-it-works .step-card:nth-of-type(3) h3': 'Compartir o Grabar',
+          '#how-it-works .step-card:nth-of-type(3) p': 'Copia el contenido preparado por la IA, grábalo sin problemas con el teleprompter o descárgalo como diapositivas.',
+          '#showcase h2': 'Estudio Todo en Uno',
+          '#showcase p': 'Desivo combina todo el proceso, desde encontrar ideas hasta escribir guiones, desde pruebas A/B hasta grabación inteligente con teleprompter, en un solo lugar.',
+          '.showcase-card:nth-of-type(1) .showcase-badge': 'Idea a Guion',
+          '.showcase-card:nth-of-type(1) h3': 'Generador Multiplataforma',
+          '.showcase-card:nth-of-type(1) p': 'Ingresa tu idea, selecciona la plataforma (Reels, TikTok, Shorts, LinkedIn, X). La IA creará el guion optimizado en segundos.',
+          '.showcase-card:nth-of-type(2) .showcase-badge': 'Inspiración Diaria',
+          '.showcase-card:nth-of-type(2) h3': 'Tendencias Diarias y Puntuaciones',
+          '.showcase-card:nth-of-type(2) p': 'Obtén ideas virales basadas en tendencias. Sigue en tiempo real las métricas de puntuación viral potencial de tus ideas de video.',
+          '.showcase-card:nth-of-type(3) .showcase-badge': 'Estudio Completo',
+          '.showcase-card:nth-of-type(3) h3': 'Suite AI Creator Avanzada',
+          '.showcase-card:nth-of-type(3) p': 'Gestiona todo tu calendario usando funciones como AI Assistant, Content Transformer, Audit Labs, Thumbnail Studio, Slide Engine y Teleprompter.',
+          '.showcase-card:nth-of-type(4) .showcase-badge': 'Estudio de Subtítulos',
+          '.showcase-card:nth-of-type(4) h3': 'Subtítulos Virales Automáticos',
+          '.showcase-card:nth-of-type(4) p': 'Simule plantillas de subtítulos populares y estilos animados. Resalte palabras clave con colores de neón para maximizar la retención.',
+          '.caption-top-ui span:nth-of-type(1)': '🔴 Vista Previa',
+          '.style-selector-title': 'Seleccionar Estilo de Subtítulo',
+          '#caption-preview-text': '¡El secreto para <span class="highlight">hacerse viral</span> está en los primeros <span class="highlight">3 segundos</span>!',
+          '.testimonials-section .badge': '<span class="badge-dot"></span> Prueba Social',
+          '#testimonials h2': 'Creadores que Crecen con Desivo',
+          '#testimonials p': 'Comentarios de creadores de contenido que han cambiado por completo su flujo de trabajo con Desivo.',
+          '.testimonial-card:nth-of-type(1) h4': 'Deniz Kaya',
+          '.testimonial-card:nth-of-type(1) .testimonial-quote': '"Encontrar ideas para Reels era una tortura. Pasaba horas pensando qué grabar. Desde que descargué Desivo, solo escribo el tema y el guion está listo en 5 segundos. Las sugerencias de gancho aumentaron mi retención un 45%."',
+          '.testimonial-card:nth-of-type(2) h4': 'Murat Yılmaz',
+          '.testimonial-card:nth-of-type(2) .testimonial-quote': '"Mantener espectadores en finanzas es difícil. Empecé a probar ganchos con el A/B Hook Lab. Mi último video llegó a 1.2M de vistas y trajo 8k seguidores. El teleprompter me salvó por completo."',
+          '.testimonial-card:nth-of-type(3) h4': 'Selin Demir',
+          '.testimonial-card:nth-of-type(3) .testimonial-quote': '"El Slide Engine fue un salvavidas para LinkedIn. Puedo preparar diapositivas PDF en 2 minutos con plantillas en lugar de pasar horas en Canva. El plan de agencia facilita la gestión."',
+          '.testimonial-card:nth-of-type(4) h4': 'Can Polat',
+          '.testimonial-card:nth-of-type(4) .testimonial-quote': '"Produzco contenido educativo y necesito explicar detalles técnicos con claridad. Gracias al teleprompter de Desivo, ya no memorizo. Hago grabaciones fluidas mirando directo a la cámara."',
+          '.testimonial-card:nth-of-type(5) h4': 'Elif Aslan',
+          '.testimonial-card:nth-of-type(5) .testimonial-quote': '"El algoritmo de TikTok es complicado, pero con Trend Hunter predigo qué temas subirán. De mis últimos 3 videos, dos se hicieron virales. Todo creador debería tener esta app."',
+          '.testimonial-card:nth-of-type(6) h4': 'Hakan Demirci',
+          '.testimonial-card:nth-of-type(6) .testimonial-quote': '"Adaptar guiones para plataformas era pesado. Generar Reels, pasarlo a hilos de X o escribir para LinkedIn tomaba horas. El módulo de Una Idea lo hace todo al instante."',
+          '#pricing h2': 'Planes de Precios',
+          '#pricing p': 'Desbloquea el poder de Desivo con el plan que mejor se adapte a tu presupuesto. Mejora o cancela en cualquier momento.',
+          '#plan-free h3': 'Plan Gratuito',
+          '#plan-free .plan-price': '$0',
+          '#plan-free .plan-limit': '3 videos / mes',
+          '#plan-free .plan-features li:nth-of-type(1)': 'Studio de Teleprompter Premium ilimitado',
+          '#plan-free .plan-features li:nth-of-type(2)': 'Simulador de zona segura Reel Cover 9:16',
+          '#plan-free .plan-features li:nth-of-type(3)': 'Calendario de contenido y planificación ilimitados',
+          '#plan-free .plan-features li:nth-of-type(4)': '1 perfil de Brand Kit',
+          '#plan-free .plan-features li:nth-of-type(5)': '3 guiones de video AI y generación de ganchos al mes',
+          '#plan-free .plan-btn': 'Empezar ya',
+          '#plan-creator h3': 'Creator Pro',
+          '#plan-creator .plan-price': '$11.99 <span>/ mes</span>',
+          '#plan-creator .plan-limit': '100 videos / mes',
+          '#plan-creator .plan-features li:nth-of-type(1)': '100 guiones de video AI y Hook Swappers al mes',
+          '#plan-creator .plan-features li:nth-of-type(2)': '25 imágenes AI Thumbnail al mes',
+          '#plan-creator .plan-features li:nth-of-type(3)': '1 perfil de Brand Kit Premium',
+          '#plan-creator .plan-features li:nth-of-type(4)': 'Acceso a AI Assistant (Análisis, Mentor, etc.)',
+          '#plan-creator .plan-features li:nth-of-type(5)': 'Respaldo en la nube y experiencia sin anuncios',
+          '#plan-creator .plan-btn': 'Actualizar a Pro',
+          '#plan-creator .popular-badge': 'Más Popular',
+          '#plan-agency h3': 'Plan de Agencia',
+          '#plan-agency .plan-price': '$49.99 <span>/ mes</span>',
+          '#plan-agency .plan-limit': '1000 videos / mes',
+          '#plan-agency .plan-features li:nth-of-type(1)': '1000 guiones de video AI & Hook Swappers al mes',
+          '#plan-agency .plan-features li:nth-of-type(2)': '150 imágenes AI Thumbnail al mes',
+          '#plan-agency .plan-features li:nth-of-type(3)': 'Hasta 5 perfiles de Brand Kit (Agencia/Clientes)',
+          '#plan-agency .plan-features li:nth-of-type(4)': 'Colaboración de equipo y gestión de cuentas',
+          '#plan-agency .plan-features li:nth-of-type(5)': 'Línea de soporte VIP 24/7',
+          '#plan-agency .plan-btn': 'Iniciar Agencia',
+          '.referral-badge': 'Invita y Gana',
+          '#referral-reward h3': '¡Invita Amigos, Ganan Juntos!',
+          '#referral-reward p': 'Comparte tu código de invitación en Desivo. Cuando tu amigo se registre, recibirá 1 crédito adicional y tú recibirás +1 crédito al instante.',
+          '.referral-cta': 'Obtener Código & Compartir',
+          '#download h2': 'Cambia el Juego de las Redes Sociales.',
+          '#download p': 'Descarga Desivo en tu teléfono inteligente ahora y comienza a experimentar el lujo y la velocidad de la creación con IA.',
+          '#contact h2': 'Contáctanos',
+          '#contact p': 'Para sus preguntas, comentarios o propuestas de asociación, puede completar el formulario o enviarnos un correo electrónico directamente a <a href="mailto:info@desivo.app" style="color: #EC4899; font-weight: 700; text-decoration: none;">info@desivo.app</a>.',
+          '#contact label[for="contact-name"]': 'Nombre Completo',
+          '#contact label[for="contact-email"]': 'Correo Electrónico',
+          '#contact label[for="contact-message"]': 'Tu Mensaje',
+          '#contact input[id="contact-name"]': 'placeholder:Ej. Hasan Kokce',
+          '#contact input[id="contact-email"]': 'placeholder:hasan@example.com',
+          '#contact textarea[id="contact-message"]': 'placeholder:Escribe tu mensaje aquí...',
+          '#contact button[type="submit"]': 'Enviar Mensaje 🚀',
+          '#form-success': '¡Mensaje enviado con éxito! Nos pondremos en contacto a la brevedad.',
+          '#link-privacy': 'Política de Privacidad',
+          '#link-terms': 'Términos de Uso',
+          '#link-footer-contact': 'Contacto',
+          '#link-support': 'Soporte',
+          '#footer-copy': '&copy; 2026 Desivo. Todos los derechos reservados.',
+          '#footer-tagline': 'Diseñado con estética de lujo para creadores.',
+          '.scroll-indicator-text': 'Deslizar Abajo',
+          '#store-apple-hero .store-text span:nth-child(1)': 'Descárgalo en',
+          '#store-apple-hero .store-text span:nth-child(2)': 'App Store',
+          '#store-google-hero .store-text span:nth-child(1)': 'Google Play',
+          '#store-google-hero .store-text span:nth-child(2)': 'Muy Pronto',
+          '#store-apple-cta .store-text span:nth-child(1)': 'Descárgalo en',
+          '#store-apple-cta .store-text span:nth-child(2)': 'App Store',
+          '#store-google-cta .store-text span:nth-child(1)': 'Google Play',
+          '#store-google-cta .store-text span:nth-child(2)': 'Muy Pronto',
+          '#hook-input-a': 'placeholder:Ej: En este video te explico cómo crecer rápido en redes sociales...',
+          '#hook-input-b': 'placeholder:Ej: 3 secretos para llegar a 100k seguidores en redes sociales...'
+        },
+        de: {
+          '#link-features': 'Funktionen',
+          '#link-how-it-works': 'Wie es funktioniert',
+          '#link-pricing': 'Pakete',
+          '#link-contact': 'Kontakt',
+          '#link-download': 'Herunterladen',
+          '#hero-badge-text': 'KI-gestütztes Creator-Studio',
+          '#hero-title': 'Der schnellste Weg, um <span>viral zu gehen</span>.',
+          '#hero-desc': 'Desivo verwandelt eine einzige Idee in wenigen Minuten in hochkonvertierende Skripte für Reels, TikTok und YouTube. Bringen Sie Ihr Social-Media-Wachstum auf ein futuristisches Niveau mit neuronaler Hook-Analyse, automatischen Teleprompter-Führungen und CTR-optimierten Tools.',
+          '#features-title': 'Ihr Social-Media-Kraftpaket',
+          '#features-desc': 'Desivo enthält 11 unabhängige KI-Module, um jede Phase Ihrer Inhaltsproduktion zu beschleunigen und zu professionalisieren.',
+          '#feat-script h3': 'Idee zu Video',
+          '#feat-script p': 'Die KI strukturiert Videoskripte mithilfe bewährter Formeln wie PAS, AIDA und Storytelling in sofortige Szenenpläne.',
+          '#feat-abtest h3': 'Hook A/B Testlabor',
+          '#feat-abtest p': 'Lassen Sie zwei Hooks mithilfe von Neuromarketing-Ergebnissen gegeneinander antreten, um den Gewinner zu finden, der das Scrollen in den ersten 3 Sekunden stoppt.',
+          '#feat-slide h3': 'Folien-Design-Engine',
+          '#feat-slide p': 'Entwerfen und laden Sie futuristische, wischbare PDF-Folien (Karussell) herunter, die zu Ihrem Markenlogo und Ihren Farben für Instagram und LinkedIn passen.',
+          '#feat-repurpose h3': 'Eine Idee, alle Plattformen',
+          '#feat-repurpose p': 'Generieren Sie gleichzeitig Videoskripte, aufeinanderfolgende X-Threads und professionelle LinkedIn-Beiträge aus einer einzigen Idee.',
+          '#feat-prompter h3': 'Intelligenter Teleprompter',
+          '#feat-prompter p': 'Sprechen Sie ohne Auswendiglernen vor der Kamera. Erstellen Sie fehlerfreie Aufnahmen mit einem Teleprompter, der sich dynamisch an Ihre Sprachgeschwindigkeit anpasst.',
+          '#feat-subtitle h3': 'Viraler Untertitel-Designer',
+          '#feat-subtitle p': 'Simulieren Sie trendige Social-Media-Untertitelvorlagen und erhöhen Sie die Bindungszeit, indem Sie kritische Schlüsselwörter mit Neonakzenten hervorheben.',
+          '#feat-audit h3': 'KI-Zuschauer-Simulator',
+          '#feat-audit p': 'Simulieren Sie Videoaufrufsraten per KI, entdecken Sie genaue Abfallpunkte und erhalten Sie sofort nützliche Tipps zur visuellen Korrektur.',
+          '#feat-brands h3': 'Mehrere Markenprofile',
+          '#feat-brands p': 'Verwalten Sie Zielgruppen-DNA, benutzerdefinierte Skripte und Markenstimmen von 5 verschiedenen Kundenprofilen separat über BrandOS.',
+          '#feat-trend h3': 'Trend-Jäger KI-Feed',
+          '#feat-trend p': 'Verfolgen Sie heiße Medien-Hooks und virale Audio-/Video-Themen in Echtzeit, um immer das zu posten, was die maximale Reichweite erzielt.',
+          '#feat-canvas h3': 'Canvas-Design-Editor',
+          '#feat-canvas p': 'Passen Sie von der KI generierte Videocover und Karussellkarten an, indem Sie Ihre Logos, Sticker und Texte auf das Designboard ziehen.',
+          '#feat-streak h3': 'Creator-Streak',
+          '#feat-streak p': 'Halten Sie Ihren täglichen Erstellungs-Streak mit unserem spielerischen Tracker aktiv und etablieren Sie konsistente Posting-Gewohnheiten.',
+          '#ecosystem-title': 'Von der Idee zur Analyse: Das Desivo-Ökosystem',
+          '#ecosystem-desc': 'Die Reise Ihrer Ideen, die sich in virale Inhalte verwandeln. Alle unsere KI-Module arbeiten integriert zusammen, um ein komplettes Inhaltstudio zu bilden.',
+          '.flow-step[data-step="1"] .step-tag': '01. KAPITEL',
+          '.flow-step[data-step="1"] h3': 'Idee des Tages (Entdeckung)',
+          '.flow-step[data-step="1"] p': 'Erfassen Sie die trendigste Inhaltsidee des Tages und verfolgen Sie Ihre Video-Erfolgsdiagramme.',
+          '.flow-step[data-step="2"] .step-tag': '02. KAPITEL',
+          '.flow-step[data-step="2"] h3': 'Content Creator (Produktion)',
+          '.flow-step[data-step="2"] p': 'Geben Sie Ihre Idee ein und erstellen Sie sofort Ihre Videoskripte, indem Sie Plattform- und Inhaltskonzepte auswählen.',
+          '.flow-step[data-step="3"] .step-tag': '03. KAPITEL',
+          '.flow-step[data-step="3"] h3': 'Nischenauswahl (Targeting)',
+          '.flow-step[data-step="3"] p': 'Positionieren Sie Ihre Marke in über 20 Kategorien von digitalem Marketing bis Dropshipping.',
+          '.flow-step[data-step="4"] .step-tag': '04. KAPITEL',
+          '.flow-step[data-step="4"] h3': 'Mein Projekt-Panel (Verwaltung)',
+          '.flow-step[data-step="4"] p': 'Speichern Sie die Projekte, die Sie für Reels, LinkedIn und alle anderen Kanäle erstellen, in einem einzigen Panel.',
+          '.flow-step[data-step="5"] .step-tag': '05. KAPITEL',
+          '.flow-step[data-step="5"] h3': 'Erweiterte KI-Module (Toolkit)',
+          '.flow-step[data-step="5"] p': 'Starten Sie Trend Hunter, Media Kit, Hook Pool und Performance Auditor sofort.',
+          '#hook-tester h2': 'Hook-A/B-Testlabor',
+          '#hook-tester p': 'Retten Sie die ersten 3 Sekunden Ihrer Videos. Lassen Sie zwei verschiedene Video-Intros (Hooks) mit KI gegeneinander antreten und sehen Sie sofort den Gewinner.',
+          '.scan-text': 'Scannen von Neuromarketing-Algorithmen...',
+          '.hook-label.a': '<span>🔵</span> Hook-A-Option (A/B-Test)',
+          '.hook-label.b': '<span>🔴</span> Hook-B-Option (A/B-Test)',
+          '.hook-input-group:nth-of-type(1) .template-btn:nth-of-type(1)': 'Lässige Erzählung',
+          '.hook-input-group:nth-of-type(1) .template-btn:nth-of-type(2)': 'Frage-Intro',
+          '.hook-input-group:nth-of-type(2) .template-btn:nth-of-type(1)': 'Neugier-Trigger',
+          '.hook-input-group:nth-of-type(2) .template-btn:nth-of-type(2)': 'Pain-Point-Intro',
+          '#run-test-btn': '<span>🚀</span> Hooks vergleichen',
+          '#winner-tag': '🏆 GEWINNER: HOOK A',
+          '#winner-desc': 'Dieser Hook hat eine deutliche Überlegenheit gegenüber der anderen Option bei der Neugiererzeugung und dem Stoppen des Scrollens in den ersten 3 Sekunden gezeigt.',
+          '.metric-bar-group:nth-of-type(1) .metric-bar-title': 'Aufmerksamkeitskraft',
+          '.metric-bar-group:nth-of-type(2) .metric-bar-title': 'Neugierfaktor',
+          '.metric-bar-group:nth-of-type(3) .metric-bar-title': 'Einprägsamkeitsrate',
+          '#why-desivo h2': 'Erstellen Sie Inhalte nicht nur, erstellen Sie sie intelligenter',
+          '#why-desivo p': 'Desivo analysiert Social-Media-Algorithmen und die Psychologie der Zuschauer und verwandelt Ihren Inhaltserstellungsprozess in ein wachstumsorientiertes Datenzentrum.',
+          '#why-desivo .metric-card:nth-of-type(1) h4': 'Schnellere Produktion',
+          '#why-desivo .metric-card:nth-of-type(1) p': 'Dank des KI-Assistenten und der Plattformvorlagen können Sie das Schreiben von Skripten und das Entwerfen von Folien in Sekundenschnelle statt in Stunden erledigen.',
+          '#why-desivo .metric-card:nth-of-type(2) h4': 'Zuschauerbindungsrate',
+          '#why-desivo .metric-card:nth-of-type(2) p': 'Optimieren Sie die ersten 3 Sekunden Ihrer Videos mit dem Hook-A/B-Testlabor und dem viralen Hook-Pool, um Zuschauer auf dem Bildschirm zu halten.',
+          '#why-desivo .metric-card:nth-of-type(3) h4': 'Markenkonsequente Stimme',
+          '#why-desivo .metric-card:nth-of-type(3) p': 'Dank des Multi-Marken-OS-Kits bereitet die KI Ihre Inhalte immer so vor, dass sie der einzigartigen Stimme Ihrer Marke und der Zielgruppen-DNA treu bleiben.',
+          '#why-desivo .metric-card:nth-of-type(4) h4': 'Kein Kamerastress',
+          '#why-desivo .metric-card:nth-of-type(4) p': 'Nehmen Sie dank des intelligenten Teleprompter-Studios, das sich automatisch an Ihre Sprechgeschwindigkeit anpasst, flüssige Aufnahmen in einem Rutsch auf, ohne vor der Kamera zu stottern.',
+          '#faq h2': 'Häufig gestellte Fragen',
+          '#faq p': 'Finden Sie unten detaillierte Antworten auf alle Fragen, die Sie zu Desivo haben könnten.',
+          '.faq-item:nth-of-type(1) summary': 'Wann verlängern sich meine Inhaltserstellungslimits?',
+          '.faq-item:nth-of-type(1) .faq-answer': 'Ihre Paketlimits und KI-Guthaben werden genau 1 Monat nach dem Kauf (an Ihrem Abrechnungsverlängerungsdatum) automatisch zurückgesetzt. Nicht genutzte Guthaben werden nicht in den Folgemonat übertragen.',
+          '.faq-item:nth-of-type(2) summary': 'Funktioniert das KI-Teleprompter-Studio ohne Internet?',
+          '.faq-item:nth-of-type(2) .faq-answer': 'Ja! Unser Teleprompter-Studio und das Kamera-Aufnahmemodul laufen vollständig lokal auf der Hardware Ihres Geräts. Der Teleprompter läuft auch ohne Internet mit Ihrem geladenen Skript weiter und speichert die Aufnahmen in Ihrer Galerie.',
+          '.faq-item:nth-of-type(3) summary': 'Wer besitzt die Urheberrechte der Skripte und Designs?',
+          '.faq-item:nth-of-type(3) .faq-answer': 'Alle von der KI erstellten Skripte, Videokonzepte und Covergrafiken gehören zu 100 % Ihnen (dem Nutzer). Es sind keine Lizenzgebühren erforderlich und Sie können sie auf jeder Social-Media-Plattform frei monetarisieren.',
+          '.faq-item:nth-of-type(4) summary': 'Was ist ein Brand Kit und wie funktioniert es?',
+          '.faq-item:nth-of-type(4) .faq-answer': 'Das Brand Kit trainiert die KI auf Ihren einzigartigen Stil. Hier speichern Sie Ihren Markennamen, Ihr Logo, Ihre Zielgruppe und Ihren Tonfall (z. B. lässig, professionell). Die KI mischt diese Details, um Skripte zu personalisieren.',
+          '.faq-item:nth-of-type(5) summary': 'Was ist ein Media Kit und was bedeutet "Verifiziertes Konto"?',
+          '.faq-item:nth-of-type(5) .faq-answer': 'Ein Media Kit ist Ihr digitaler Lebenslauf für Marken. Wenn Sie Ihre Konten über unseren sicheren Simulator verbinden, erhalten Sie das grüne "Verifiziert"-Abzeichen, das zeigt, dass Ihre Statistiken echt sind.',
+          '.faq-item:nth-of-type(6) summary': 'Wie kann ich die Qualität der KI-Thumbnails verbessern?',
+          '.faq-item:nth-of-type(6) .faq-answer': 'Je detaillierter Ihr Thema ist, desto reichhaltiger wird das Bild. Das Angeben von dominanten Farbtönen, Beleuchtungsstilen (z. B. kinematografisch) und Schlüsselobjekten führt zu besseren CTR-Ergebnissen.',
+          '.faq-item:nth-of-type(7) summary': 'Wie kann ich mein Abonnement kündigen?',
+          '.faq-item:nth-of-type(7) .faq-answer': 'Sie können Ihr Abonnement jederzeit kündigen. Die Kündigung erfolgt auf Ihrem Apple-Gerät unter Einstellungen > Apple ID > Abonnements mit einem einzigen Antippen.',
+          '.faq-item:nth-of-type(8) summary': 'Wie übertrage ich mein Abonnement auf ein anderes Gerät?',
+          '.faq-item:nth-of-type(8) .faq-answer': 'Ihr Abonnement ist an Ihre Apple ID gebunden. Gehen Sie auf jedem Gerät mit demselben Konto auf den Paketbildschirm und tippen Sie auf "Käufe wiederherstellen", um es zu aktivieren.',
+          '#how-it-works h2': 'Wie es funktioniert',
+          '#how-it-works p': 'Tragen Sie Ihr Social-Media-Studio mit Desivo in Ihrer Tasche. Hier ist der Prozess, wie Sie Ihre Ideen in virale Inhalte verwandeln:',
+          '#how-it-works .step-card:nth-of-type(1) h3': 'Ideen generieren',
+          '#how-it-works .step-card:nth-of-type(1) p': 'Öffnen Sie die App und geben Sie Ihr Inhaltsthema ein, oder lassen Sie die KI trendige, hochinteressante virale Ideen für Sie generieren.',
+          '#how-it-works .step-card:nth-of-type(2) h3': 'Schreiben & Formatieren',
+          '#how-it-works .step-card:nth-of-type(2) p': 'Wählen Sie den Schreibton und die Formel speziell für die Plattform (Reels, TikTok, YouTube, X, LinkedIn). Die KI bereitet die Hooks sofort vor.',
+          '#how-it-works .step-card:nth-of-type(3) h3': 'Teilen oder Aufnehmen',
+          '#how-it-works .step-card:nth-of-type(3) p': 'Kopieren Sie die von der KI erstellten Inhalte, nehmen Sie sie mit dem Teleprompter flüssig auf oder laden Sie sie als automatische Folien herunter.',
+          '#showcase h2': 'All-in-One-Inhaltsstudio',
+          '#showcase p': 'Desivo vereint den gesamten Prozess von der Ideensuche über das Schreiben von Skripten und A/B-Tests bis hin zur intelligenten Teleprompter-Aufnahme an einem Ort.',
+          '.showcase-card:nth-of-type(1) .showcase-badge': 'Idee zu Skript',
+          '.showcase-card:nth-of-type(1) h3': 'Multi-Plattform-Generator',
+          '.showcase-card:nth-of-type(1) p': 'Geben Sie Ihre Idee ein, wählen Sie die Plattform (Reels, TikTok, Shorts, LinkedIn, X). Die KI erstellt das optimierte Skript in Sekunden.',
+          '.showcase-card:nth-of-type(2) .showcase-badge': 'Tägliche Inspiration',
+          '.showcase-card:nth-of-type(2) h3': 'Tägliche Trends & Analysen',
+          '.showcase-card:nth-of-type(2) p': 'Erhalten Sie virale Ideen basierend auf Trends. Verfolgen Sie die viralen Score-Metriken Ihrer Videoideen in Echtzeit.',
+          '.showcase-card:nth-of-type(3) .showcase-badge': 'Komplettes Studio',
+          '.showcase-card:nth-of-type(3) h3': 'Erweiterte Creator-Suite',
+          '.showcase-card:nth-of-type(3) p': 'Verwalten Sie Ihren gesamten Kalender mit Funktionen wie AI Assistant, Content Transformer, Audit Labs, Thumbnail Studio, Slide Engine und Teleprompter.',
+          '.showcase-card:nth-of-type(4) .showcase-badge': 'Untertitel-Studio',
+          '.showcase-card:nth-of-type(4) h3': 'Automatische virale Untertitel',
+          '.showcase-card:nth-of-type(4) p': 'Simulieren Sie trendige Untertitelvorlagen und animierte Stile. Heben Sie Schlüsselwörter mit Neonfarben hervor, um die Bindung zu maximieren.',
+          '.caption-top-ui span:nth-of-type(1)': '🔴 Vorschau',
+          '.style-selector-title': 'Untertitelstil wählen',
+          '#caption-preview-text': 'Das Geheimnis, um <span class="highlight">viral zu gehen</span>, liegt in den ersten <span class="highlight">3 Sekunden</span>!',
+          '.testimonials-section .badge': '<span class="badge-dot"></span> Social Proof',
+          '#testimonials h2': 'Creator, die mit Desivo wachsen',
+          '#testimonials p': 'Feedback von Inhaltskreatoren, die ihren Arbeitsablauf mit Desivo komplett verändert haben.',
+          '.testimonial-card:nth-of-type(1) h4': 'Deniz Kaya',
+          '.testimonial-card:nth-of-type(1) .testimonial-quote': '"Das Finden von Reels-Ideen war eine Qual. Ich habe Stunden damit verbracht, darüber nachzudenken, was ich aufnehmen soll. Seit ich Desivo heruntergeladen habe, schreibe ich einfach das Thema und das Skript ist in 5 Sekunden fertig. Dank der Hook-Vorschläge stieg meine Zuschauerbindung um 45 %."',
+          '.testimonial-card:nth-of-type(2) h4': 'Murat Yılmaz',
+          '.testimonial-card:nth-of-type(2) .testimonial-quote': '"Zuschauer in Finanzvideos zu halten, ist schwer. Ich habe angefangen, Hooks mit dem A/B Hook Lab zu testen. Mein letztes Video erreichte 1.2 Millionen Aufrufe und brachte 8.000 Follower. Der Teleprompter hat mich komplett gerettet."',
+          '.testimonial-card:nth-of-type(3) h4': 'Selin Demir',
+          '.testimonial-card:nth-of-type(3) .testimonial-quote': '"Das Slide Engine-Modul war ein Lebensretter für LinkedIn. Ich kann PDF-Folien mit Vorlagen in 2 Minuten erstellen, anstatt Stunden in Canva zu verbringen. Der Agenturplan erleichtert die Verwaltung."',
+          '.testimonial-card:nth-of-type(4) h4': 'Can Polat',
+          '.testimonial-card:nth-of-type(4) .testimonial-quote': '"Ich erstelle Bildungsinhalte und muss technische Details klar erklären. Dank des Teleprompters von Desivo muss ich nicht mehr auswendig lernen. Ich mache flüssige Aufnahmen, während ich direkt in die Kamera blicke."',
+          '.testimonial-card:nth-of-type(5) h4': 'Elif Aslan',
+          '.testimonial-card:nth-of-type(5) .testimonial-quote': '"Der TikTok-Algorithmus ist knifflig, aber mit Trend Hunter kann ich vorhersagen, welche Themen steigen werden. Von meinen letzten 3 Videos gingen zwei viral. Jeder Solo-Creator sollte diese App haben."',
+          '.testimonial-card:nth-of-type(6) h4': 'Hakan Demirci',
+          '.testimonial-card:nth-of-type(6) .testimonial-quote': '"Das Formatieren von Skripten für verschiedene Plattformen war eine mühsame Aufgabe. Das Erstellen von Reels, das Umwandeln in X-Threads oder das Schreiben für LinkedIn dauerte Stunden. Das Modul Eine Idee erledigt alles sofort."',
+          '#pricing h2': 'Tarife & Preise',
+          '#pricing p': 'Schalten Sie die Leistung von Desivo mit dem besten Paket für Ihr Budget frei. Upgraden oder kündigen Sie jederzeit.',
+          '#plan-free h3': 'Kostenloser Tarif',
+          '#plan-free .plan-price': '0 €',
+          '#plan-free .plan-limit': '3 Videos / Monat',
+          '#plan-free .plan-features li:nth-of-type(1)': 'Unbegrenztes Premium-Teleprompter-Studio',
+          '#plan-free .plan-features li:nth-of-type(2)': 'Reel Cover Studio 9:16 Safe-Zone-Simulator',
+          '#plan-free .plan-features li:nth-of-type(3)': 'Unbegrenzter Inhaltskalender & Planung',
+          '#plan-free .plan-features li:nth-of-type(4)': '1 Brand Kit Profil',
+          '#plan-free .plan-features li:nth-of-type(5)': '3 KI-Videoskripte & Hook-Generierung pro Monat',
+          '#plan-free .plan-btn': 'Jetzt starten',
+          '#plan-creator h3': 'Creator Pro',
+          '#plan-creator .plan-price': '11,99 € <span>/ Monat</span>',
+          '#plan-creator .plan-limit': '100 Videos / Monat',
+          '#plan-creator .plan-features li:nth-of-type(1)': '100 KI-Videoskripte & Hook Swappers pro Monat',
+          '#plan-creator .plan-features li:nth-of-type(2)': '25 KI-Thumbnail-Bilder pro Monat',
+          '#plan-creator .plan-features li:nth-of-type(3)': '1 Premium Brand Kit Profil',
+          '#plan-creator .plan-features li:nth-of-type(4)': 'Zugriff auf AI Assistant (Analyse, Mentor usw.)',
+          '#plan-creator .plan-features li:nth-of-type(5)': 'Cloud-Backups & werbefreie Nutzung',
+          '#plan-creator .plan-btn': 'Auf Pro upgraden',
+          '#plan-creator .popular-badge': 'Sehr Beliebt',
+          '#plan-agency h3': 'Agentur-Tarif',
+          '#plan-agency .plan-price': '49,99 € <span>/ Monat</span>',
+          '#plan-agency .plan-limit': '1000 Videos / Monat',
+          '#plan-agency .plan-features li:nth-of-type(1)': '1000 KI-Videoskripte & Hook Swappers pro Monat',
+          '#plan-agency .plan-features li:nth-of-type(2)': '150 KI-Thumbnail-Bilder pro Monat',
+          '#plan-agency .plan-features li:nth-of-type(3)': 'Bis zu 5 Brand Kit (Agentur/Kunden) Profile',
+          '#plan-agency .plan-features li:nth-of-type(4)': 'Teamzusammenarbeit & Kontenverwaltung',
+          '#plan-agency .plan-features li:nth-of-type(5)': '24/7 VIP-Support',
+          '#plan-agency .plan-btn': 'Agentur starten',
+          '.referral-badge': 'Einladen & Verdienen',
+          '#referral-reward h3': 'Freunde einladen, gemeinsam verdienen!',
+          '#referral-reward p': 'Teilen Sie Ihren Empfehlungscode in Desivo. Wenn Ihr Freund sich anmeldet, erhält er 1 zusätzliches Guthaben und Ihr Konto erhält sofort +1 Guthaben.',
+          '.referral-cta': 'Code erhalten & teilen',
+          '#download h2': 'Verändern Sie das Social-Media-Spiel.',
+          '#download p': 'Laden Sie Desivo jetzt auf Ihr Smartphone herunter und erleben Sie den Luxus und die Geschwindigkeit der KI-gestützten Erstellung.',
+          '#contact h2': 'Kontaktieren Sie uns',
+          '#contact p': 'Für Ihre Fragen, Rückmeldungen oder Partnerschaftsvorschläge können Sie das Formular ausfüllen oder uns direkt eine E-Mail an <a href="mailto:info@desivo.app" style="color: #EC4899; font-weight: 700; text-decoration: none;">info@desivo.app</a> senden.',
+          '#contact label[for="contact-name"]': 'Vollständiger Name',
+          '#contact label[for="contact-email"]': 'E-Mail-Adresse',
+          '#contact label[for="contact-message"]': 'Ihre Nachricht',
+          '#contact input[id="contact-name"]': 'placeholder:Z.B. Hasan Kokce',
+          '#contact input[id="contact-email"]': 'placeholder:hasan@example.com',
+          '#contact textarea[id="contact-message"]': 'placeholder:Schreiben Sie Ihre Nachricht hier...',
+          '#contact button[type="submit"]': 'Nachricht senden 🚀',
+          '#form-success': 'Nachricht erfolgreich gesendet! Wir werden uns in Kürze bei Ihnen melden.',
+          '#link-privacy': 'Datenschutzerklärung',
+          '#link-terms': 'Nutzungsbedingungen',
+          '#link-footer-contact': 'Kontakt',
+          '#link-support': 'Support',
+          '#footer-copy': '&copy; 2026 Desivo. Alle Rechte vorbehalten.',
+          '#footer-tagline': 'Entworfen mit Luxus-Ästhetik für Creator.',
+          '.scroll-indicator-text': 'Nach unten scrollen',
+          '#store-apple-hero .store-text span:nth-child(1)': 'Laden im',
+          '#store-apple-hero .store-text span:nth-child(2)': 'App Store',
+          '#store-google-hero .store-text span:nth-child(1)': 'Google Play',
+          '#store-google-hero .store-text span:nth-child(2)': 'In Kürze',
+          '#store-apple-cta .store-text span:nth-child(1)': 'Laden im',
+          '#store-apple-cta .store-text span:nth-child(2)': 'App Store',
+          '#store-google-cta .store-text span:nth-child(1)': 'Google Play',
+          '#store-google-cta .store-text span:nth-child(2)': 'In Kürze',
+          '#hook-input-a': 'placeholder:Z.B. In diesem Video zeige ich dir, wie du auf Social Media schnell wachsen kannst...',
+          '#hook-input-b': 'placeholder:Z.B. 3 geheime Schlüssel, um 100k Follower auf Social Media zu erreichen...'
+        }
+      };
+
+      // Language Switcher Function
+      window.changeLanguage = function(lang) {
+        localStorage.setItem('desivo_lang', lang);
+        const dict = translations[lang] || translations['tr'];
+        
+        for (const selector in dict) {
+          const val = dict[selector];
+          const els = document.querySelectorAll(selector);
+          els.forEach(el => {
+            if (val.startsWith('placeholder:')) {
+              el.setAttribute('placeholder', val.replace('placeholder:', ''));
+            } else {
+              el.innerHTML = val;
+            }
+          });
+        }
+
+        // Translate marquee items
+        const marqueeDict = {
+          '🎯 Dijital Pazarlama': {
+            en: '🎯 Digital Marketing',
+            es: '🎯 Marketing Digital',
+            de: '🎯 Digitales Marketing'
+          },
+          '📱 Sosyal Medya Büyüme': {
+            en: '📱 Social Media Growth',
+            es: '📱 Crecimiento en Redes',
+            de: '📱 Social-Media-Wachstum'
+          },
+          '🛍️ E-Ticaret & Dropshipping': {
+            en: '🛍️ E-Commerce & Dropshipping',
+            es: '🛍️ E-Commerce y Dropshipping',
+            de: '🛍️ E-Commerce & Dropshipping'
+          },
+          '⚙️ Satış Hunileri & CRO': {
+            en: '⚙️ Funnels & CRO',
+            es: '⚙️ Embudos de Venta y CRO',
+            de: '⚙️ Funnels & CRO'
+          },
+          '🚀 Girişimcilik & Startup': {
+            en: '🚀 Entrepreneurship & Startups',
+            es: '🚀 Emprendimiento y Startups',
+            de: '🚀 Unternehmertum & Startups'
+          },
+          '🤝 B2B Satış & İkna': {
+            en: '🤝 B2B Sales & Persuasion',
+            es: '🤝 Ventas B2B y Persuasión',
+            de: '🤝 B2B Vertrieb & Überzeugung'
+          },
+          '📧 E-Posta Pazarlama': {
+            en: '📧 Email Marketing',
+            es: '📧 Marketing por Email',
+            de: '📧 E-Mail-Marketing'
+          },
+          '👑 Kişisel Marka': {
+            en: '👑 Personal Branding',
+            es: '👑 Marca Personal',
+            de: '👑 Personal Branding'
+          },
+          '🎓 Dijital Ürün Satışı': {
+            en: '🎓 Info-Product Sales',
+            es: '🎓 Venta de Infoproductos',
+            de: '🎓 Digitale Produkte verkaufen'
+          },
+          '💸 Pasif Gelir & Affiliate': {
+            en: '💸 Passive Income & Affiliate',
+            es: '💸 Ingresos Pasivos y Afiliados',
+            de: '💸 Passives Einkommen & Affiliate'
+          },
+          '💻 SaaS Pazarlaması': {
+            en: '💻 SaaS Marketing',
+            es: '💻 Marketing de SaaS',
+            de: '💻 SaaS-Marketing'
+          },
+          '🤖 Yapay Zeka & Otomasyon': {
+            en: '🤖 AI & Automation',
+            es: '🤖 IA y Automatización',
+            de: '🤖 KI & Automatisierung'
+          },
+          '📈 Yatırım & Finans': {
+            en: '📈 Investing & Finance',
+            es: '📈 Inversiones y Finanzas',
+            de: '📈 Investieren & Finanzen'
+          },
+          '🏠 Gayrimenkul': {
+            en: '🏠 Real Estate',
+            es: '🏠 Bienes Raíces',
+            de: '🏠 Immobilien'
+          },
+          '🧠 Kişisel Gelişim': {
+            en: '🧠 Personal Growth',
+            es: '🧠 Desarrollo Personal',
+            de: '🧠 Persönlichkeitsentwicklung'
+          },
+          '⏱️ Verimlilik & Zamandan Tasarruf': {
+            en: '⏱️ Productivity & Time Hacking',
+            es: '⏱️ Productividad y Tiempo',
+            de: '⏱️ Produktivität & Zeitersparnis'
+          },
+          '💪 Sağlık & Fitness': {
+            en: '💪 Health & Fitness',
+            es: '💪 Salud y Bienestar',
+            de: '💪 Gesundheit & Fitness'
+          },
+          '🎨 Tasarım & Kreatif': {
+            en: '🎨 Design & Creative',
+            es: '🎨 Diseño y Creatividad',
+            de: '🎨 Design & Kreativität'
+          },
+          '📸 Fotoğraf & Video': {
+            en: '📸 Photo & Video',
+            es: '📸 Foto y Video',
+            de: '📸 Foto & Video'
+          },
+          '📚 Kitap Analizi & Edebiyat': {
+            en: '📚 Book Summary & Literature',
+            es: '📚 Resumen de Libros y Literatura',
+            de: '📚 Buchzusammenfassungen & Literatur'
+          }
+        };
+
+        const marqueeItems = document.querySelectorAll('.marquee-item');
+        marqueeItems.forEach(item => {
+          const originalText = item.getAttribute('data-original-text') || item.textContent.trim();
+          if (!item.getAttribute('data-original-text')) {
+            item.setAttribute('data-original-text', originalText);
+          }
+          if (lang === 'tr') {
+            item.textContent = originalText;
+          } else {
+            const translation = marqueeDict[originalText] && marqueeDict[originalText][lang];
+            if (translation) {
+              item.textContent = translation;
+            }
+          }
+        });
+        
+        // Sync Dropdown Selection State
+        const selectEl = document.getElementById('lang-select');
+        if (selectEl) {
+          selectEl.value = lang;
+        }
+      };
+
+      // Contact Form submit handler with Supabase Integration
+      window.handleContactSubmit = async function(e) {
+        e.preventDefault();
+        const successMsg = document.getElementById('form-success');
+        const submitBtn = e.target.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerHTML;
+
+        const name = document.getElementById('contact-name').value.trim();
+        const email = document.getElementById('contact-email').value.trim();
+        const message = document.getElementById('contact-message').value.trim();
+
+        if (!name || !email || !message) return;
+
+        const lang = localStorage.getItem('desivo_lang') || 'tr';
+        const loadingTexts = {
+          tr: 'Gönderiliyor... ⏳',
+          en: 'Sending... ⏳',
+          es: 'Enviando... ⏳',
+          de: 'Wird gesendet... ⏳'
+        };
+        const errorTexts = {
+          tr: 'Mesajınız gönderilirken bir hata oluştu. Lütfen tekrar deneyin.',
+          en: 'An error occurred while sending your message. Please try again.',
+          es: 'Ocurrió un error al enviar tu mensaje. Por favor, inténtalo de nuevo.',
+          de: 'Beim Senden Ihrer Nachricht ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.'
+        };
+
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = loadingTexts[lang] || loadingTexts['tr'];
+
+        try {
+          const { error } = await supabase
+            .from('contact_messages')
+            .insert([{ name, email, message }]);
+
+          if (error) throw error;
+
+          if (successMsg) {
+            successMsg.style.display = 'block';
+            document.getElementById('contact-form').reset();
+            setTimeout(() => {
+              successMsg.style.display = 'none';
+            }, 5000);
+          }
+        } catch (err) {
+          console.error('Error sending message:', err);
+          alert(errorTexts[lang] || errorTexts['tr']);
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnText;
+        }
+      };
+
+      // Load Saved Language
+      const savedLang = localStorage.getItem('desivo_lang') || 'tr';
+      changeLanguage(savedLang);
     });
   </script>
 

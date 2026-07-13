@@ -102,6 +102,10 @@
           <i data-lucide="bug"></i> Hata Raporları
           <span id="sidebar-bug-badge" class="badge-pill badge-error" style="margin-left: auto; display: none; font-size: 10px; padding: 2px 6px;">0</span>
         </div>
+        <div class="nav-item" data-tab="tab-messages">
+          <i data-lucide="mail-open"></i> İletişim Mesajları
+          <span id="sidebar-msg-badge" class="badge-pill badge-error" style="margin-left: auto; display: none; font-size: 10px; padding: 2px 6px;">0</span>
+        </div>
         <div class="nav-item" data-tab="tab-notifications">
           <i data-lucide="bell-ring"></i> Bildirim Gönderimi
         </div>
@@ -502,6 +506,41 @@
               </thead>
               <tbody id="bugs-table-body">
                 <!-- Bug rows injected dynamically by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      
+      <!-- ================= SECTION: CONTACT MESSAGES ================= -->
+      <section id="tab-messages" class="tab-pane">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">İletişim Mesajları</h1>
+            <p class="page-subtitle">Web sitesi iletişim formundan gelen ziyaretçi mesajlarını izleyin ve yönetin.</p>
+          </div>
+        </div>
+        
+        <div class="dashboard-panel">
+          <div class="table-responsive">
+            <div id="messages-loading" class="loading-overlay">
+              <div class="spinner"></div>
+              <div class="loading-text">Mesajlar listeleniyor...</div>
+            </div>
+            
+            <table class="custom-table" id="messages-table" style="display: none;">
+              <thead>
+                <tr>
+                  <th></th> <!-- Expand indicator -->
+                  <th>Tarih</th>
+                  <th>Gönderen Adı</th>
+                  <th>E-Posta Adresi</th>
+                  <th>Durum</th>
+                  <th>Aksiyonlar</th>
+                </tr>
+              </thead>
+              <tbody id="messages-table-body">
+                <!-- Message rows injected dynamically by JS -->
               </tbody>
             </table>
           </div>
@@ -1154,6 +1193,7 @@
   </div>
 
   <!-- Main JavaScript File -->
-  <script src="app.js"></script>
+  <!-- Custom scripts with cache busting -->
+  <script src="app.js?v=2"></script>
 </body>
 </html>

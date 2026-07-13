@@ -156,5 +156,58 @@
     </div>
   </footer>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const lang = localStorage.getItem('desivo_lang') || 'tr';
+      if (lang !== 'tr') {
+        const dicts = {
+          en: {
+            'nav ul li:nth-child(1) a': 'Features',
+            'nav ul li:nth-child(2) a': 'How It Works',
+            'nav ul li:nth-child(3) a': 'Pricing',
+            'nav ul li:nth-child(4) a': 'Download Now',
+            '.doc-card h1': 'Terms of Use (EULA)',
+            '.doc-date': 'Last Updated: June 1, 2026',
+            '.footer-links a:nth-child(2)': 'Privacy Policy',
+            '.footer-links a:nth-child(3)': 'Terms of Use',
+            '.footer-links a:nth-child(4)': 'Support',
+            '.footer-bottom p:nth-child(1)': '&copy; 2026 Desivo. All Rights Reserved.'
+          },
+          es: {
+            'nav ul li:nth-child(1) a': 'Características',
+            'nav ul li:nth-child(2) a': 'Cómo Funciona',
+            'nav ul li:nth-child(3) a': 'Planes',
+            'nav ul li:nth-child(4) a': 'Descargar',
+            '.doc-card h1': 'Términos de Uso (EULA)',
+            '.doc-date': 'Última actualización: 1 de junio de 2026',
+            '.footer-links a:nth-child(2)': 'Política de Privacidad',
+            '.footer-links a:nth-child(3)': 'Términos de Uso',
+            '.footer-links a:nth-child(4)': 'Soporte',
+            '.footer-bottom p:nth-child(1)': '&copy; 2026 Desivo. Todos los derechos reservados.'
+          },
+          de: {
+            'nav ul li:nth-child(1) a': 'Funktionen',
+            'nav ul li:nth-child(2) a': 'Wie es funktioniert',
+            'nav ul li:nth-child(3) a': 'Pakete',
+            'nav ul li:nth-child(4) a': 'Herunterladen',
+            '.doc-card h1': 'Nutzungsbedingungen (EULA)',
+            '.doc-date': 'Zuletzt aktualisiert: 1. Juni 2026',
+            '.footer-links a:nth-child(2)': 'Datenschutzerklärung',
+            '.footer-links a:nth-child(3)': 'Nutzungsbedingungen',
+            '.footer-links a:nth-child(4)': 'Support',
+            '.footer-bottom p:nth-child(1)': '&copy; 2026 Desivo. Alle Rechte vorbehalten.'
+          }
+        };
+        const dict = dicts[lang];
+        if (dict) {
+          for (const selector in dict) {
+            const el = document.querySelector(selector);
+            if (el) el.innerHTML = dict[selector];
+          }
+        }
+      }
+    });
+  </script>
+
 </body>
 </html>
