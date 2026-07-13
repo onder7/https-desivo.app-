@@ -33,23 +33,32 @@
         <img src="assets/logo.png" alt="Desivo Logo" class="logo-img">
         Desivo<span>.</span>
       </a>
-      <nav>
-        <ul>
-          <li><a href="#features" id="link-features">Özellikler</a></li>
-          <li><a href="#how-it-works" id="link-how-it-works">Nasıl Çalışır?</a></li>
-          <li><a href="#pricing" id="link-pricing">Paketler</a></li>
-          <li><a href="#contact" id="link-contact">İletişim</a></li>
-          <li><a href="#download" id="link-download" class="nav-cta">Hemen İndir</a></li>
-          <li>
-            <select id="lang-select" onchange="changeLanguage(this.value)" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #fff; padding: 6px 10px; font-size: 11px; font-weight: 700; outline: none; cursor: pointer; margin-left: 10px; text-transform: uppercase;">
-              <option value="tr">TR 🇹🇷</option>
-              <option value="en">EN 🇬🇧</option>
-              <option value="es">ES 🇪🇸</option>
-              <option value="de">DE 🇩🇪</option>
-            </select>
-          </li>
-        </ul>
-      </nav>
+      <div class="nav-right">
+        <nav id="nav-menu">
+          <ul>
+            <li><a href="#features" id="link-features">Özellikler</a></li>
+            <li><a href="#how-it-works" id="link-how-it-works">Nasıl Çalışır?</a></li>
+            <li><a href="#pricing" id="link-pricing">Paketler</a></li>
+            <li><a href="#contact" id="link-contact">İletişim</a></li>
+            <li><a href="#download" id="link-download" class="nav-cta">Hemen İndir</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <select id="lang-select" onchange="changeLanguage(this.value)">
+            <option value="tr">TR 🇹🇷</option>
+            <option value="en">EN 🇬🇧</option>
+            <option value="es">ES 🇪🇸</option>
+            <option value="de">DE 🇩🇪</option>
+          </select>
+          <button id="menu-toggle" class="menu-toggle" aria-label="Menüyü Aç/Kapat">
+            <svg class="hamburger" viewBox="0 0 24 24" width="24" height="24">
+              <line class="line-1" x1="4" y1="6" x2="20" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
+              <line class="line-2" x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
+              <line class="line-3" x1="4" y1="18" x2="20" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -2460,6 +2469,37 @@
           submitBtn.innerHTML = originalBtnText;
         }
       };
+
+      // Mobile Menu Toggle
+      const menuToggle = document.getElementById('menu-toggle');
+      const navMenu = document.getElementById('nav-menu');
+      if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          navMenu.classList.toggle('active');
+          menuToggle.classList.toggle('active');
+          document.body.classList.toggle('menu-open');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+          if (navMenu.classList.contains('active') && !navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+            navMenu.classList.remove('active');
+            menuToggle.classList.remove('active');
+            document.body.classList.remove('menu-open');
+          }
+        });
+
+        // Close menu when clicking a link
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            menuToggle.classList.remove('active');
+            document.body.classList.remove('menu-open');
+          });
+        });
+      }
 
       // Load Saved Language
       const savedLang = localStorage.getItem('desivo_lang') || 'tr';
