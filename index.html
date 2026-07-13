@@ -22,7 +22,7 @@
   <meta property="twitter:image" content="assets/hero.png">
 
   <!-- Style Sheet -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=1.2">
 </head>
 <body>
 
@@ -2504,8 +2504,33 @@
       // Load Saved Language
       const savedLang = localStorage.getItem('desivo_lang') || 'tr';
       changeLanguage(savedLang);
+
+      // Back to Top functionality
+      const backToTopBtn = document.getElementById('back-to-top');
+      if (backToTopBtn) {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 400) {
+            backToTopBtn.classList.add('show');
+          } else {
+            backToTopBtn.classList.remove('show');
+          }
+        });
+        backToTopBtn.addEventListener('click', () => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+      }
     });
   </script>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="back-to-top" aria-label="Yukarı Çık">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
 
 </body>
 </html>
